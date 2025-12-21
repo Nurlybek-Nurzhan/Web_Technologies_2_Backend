@@ -1,4 +1,4 @@
-# Assignment #1 — Express API with JSON Storage
+# Assignment #1 — Building Your First Express API (GET, POST, PUT, DELETE) with JSON Storage
 
 ## 1. Project Description
 
