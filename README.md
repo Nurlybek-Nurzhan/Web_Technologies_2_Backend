@@ -97,16 +97,14 @@ The server will start and listen for requests at `http://localhost:3000`.
 
 ## 7. Postman Test Screenshots
 
-*Paste your screenshots here to prove the API works as expected.*
-
 ### GET all tasks
-![alt text](screenshots\get.png)
+<img width="1280" height="688" alt="image" src="https://github.com/user-attachments/assets/08b5088b-6216-4635-a674-579ef0018dbc" />
 
 ### POST a new task
-![alt text](screenshots\post.png)
+<img width="1280" height="688" alt="image" src="https://github.com/user-attachments/assets/6cb2e4a9-f509-46de-92d5-6b220848b06c" />
 
 ### PUT update a task
-![alt text](screenshots\put.png)
+<img width="1280" height="688" alt="image" src="https://github.com/user-attachments/assets/09b05a65-07c5-4028-9d67-65c576ade8ba" />
 
 ### DELETE a task
-![alt text](screenshots\delete.png)
+<img width="1280" height="688" alt="image" src="https://github.com/user-attachments/assets/a497782d-0a66-4a4d-bb6c-8b29fd639cec" />
