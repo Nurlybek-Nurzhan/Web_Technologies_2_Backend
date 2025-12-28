@@ -174,63 +174,63 @@ GET /api/country?code=KZ
 ### 1. Homepage - Initial State
 Search interface before entering a city name.
 
-![Screenshot 1]()
+![Screenshot 1](screenshots/Screenshot_1.png)
 
 ---
 
 ### 2. Weather Data Display
 After searching for "Astana" - shows temperature, feels like, wind speed, humidity, rain volume, coordinates, and country code.
 
-![Screenshot 2]()
+![Screenshot 2](screenshots/Screenshot_2.png)
 
 ---
 
 ### 3. Country Information Section
 Displays country flag, official name, capital, region, population, area, languages, and currency from REST Countries API.
 
-![Screenshot 3]()
+![Screenshot 3](screenshots/Screenshot_3.png)
 
 ---
 
 ### 4. News Section
 Related news articles fetched from Mediastack API based on the searched location.
 
-![Screenshot 4]()
+![Screenshot 4](screenshots/Screenshot_4.png)
 
 ---
 
 ### 5. Responsive Design - Mobile View
 Application viewed on mobile device showing responsive layout.
 
-![Screenshot 5]()
+![Screenshot 5](screenshots/Screenshot_5.png)
 
 ---
 
 ### 6. Postman - Weather API Test
 Testing `/api/weather?city=Astana` endpoint in Postman showing JSON response.
 
-![Screenshot 6]()
+![Screenshot 6](screenshots/Screenshot_6.png)
 
 ---
 
 ### 7. Postman - Country API Test
 Testing `/api/country?code=KZ` endpoint in Postman.
 
-![Screenshot 7]()
+![Screenshot 7](screenshots/Screenshot_7.png)
 
 ---
 
 ### 8. Postman - News API Test
 Testing `/api/news?country=kz&keywords=Astana` endpoint in Postman.
 
-![Screenshot 8]()
+![Screenshot 8](screenshots/Screenshot_8.png)
 
 ---
 
 ### Final Screenshot: Full Application View
 Complete view of the application with all three API sections displayed (Weather, Country Info, News).
 
-![Final Screenshot]()
+![Final Screenshot](screenshots/Screenshot_9.png)
 
 ---
 
