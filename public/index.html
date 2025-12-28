@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Weather, News & Country Info</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="container">
+		<!-- Header -->
+		<header>
+			<h1>Weather, News & Country</h1>
+			<p class="subtitle">Real-time data from 3 different APIs</p>
+		</header>
+
+		<!-- Search Section -->
+		<section class="search-section">
+			<form id="search-form">
+				<input type="text" id="city-input" placeholder="Enter city name (e.g., Astana)" required autocomplete="off">
+				<button type="submit" id="search-btn">Search</button>
+			</form>
+		</section>
+
+		<!-- Loading Spinner -->
+		<div id="loading" class="loading hidden">
+			<div class="spinner"></div>
+			<p>Fetching data from APIs...</p>
+		</div>
+
+		<!-- Error Message -->
+		<div id="error" class="error hidden">
+			<p id="error-message"></p>
+		</div>
+
+		<!-- Weather Section (Core API) -->
+		<section id="weather-section" class="weather-section hidden">
+			<h2><span class="api-badge core">Core API</span> Weather</h2>
+			<div class="weather-card">
+				<div class="weather-main">
+					<img id="weather-icon" src="" alt="Weather icon">
+					<div class="weather-temp">
+						<span id="temperature">--</span>
+						<span class="unit">°C</span>
+					</div>
+				</div>
+				<div class="weather-info">
+					<h3 id="city-name">City, Country</h3>
+					<p id="description" class="description">--</p>
+				</div>
+				<div class="weather-details">
+					<div class="detail-item">
+						<span class="label">Feels Like</span>
+						<span id="feels-like" class="value">--°C</span>
+					</div>
+					<div class="detail-item">
+						<span class="label">Wind Speed</span>
+						<span id="wind-speed" class="value">-- m/s</span>
+					</div>
+					<div class="detail-item">
+						<span class="label">Humidity</span>
+						<span id="humidity" class="value">--%</span>
+					</div>
+					<div class="detail-item">
+						<span class="label">Rain (3h)</span>
+						<span id="rain" class="value">-- mm</span>
+					</div>
+					<div class="detail-item">
+						<span class="label">Coordinates</span>
+						<span id="coordinates" class="value">--, --</span>
+					</div>
+					<div class="detail-item">
+						<span class="label">Country Code</span>
+						<span id="country-code" class="value">--</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Country Section (Additional API #2) -->
+		<section id="country-section" class="country-section hidden">
+			<h2><span class="api-badge additional">API #2</span> Country Info</h2>
+			<div class="country-card">
+				<div class="country-header">
+					<img id="country-flag" src="" alt="Country flag" class="country-flag">
+					<div class="country-title">
+						<h3 id="country-name">Country Name</h3>
+						<p id="country-official">Official Name</p>
+					</div>
+				</div>
+				<div class="country-details">
+					<div class="detail-item">
+						<span class="label">Capital</span>
+						<span id="country-capital" class="value">--</span>
+					</div>
+					<div class="detail-item">
+						<span class="label">Region</span>
+						<span id="country-region" class="value">--</span>
+					</div>
+					<div class="detail-item">
+						<span class="label">Population</span>
+						<span id="country-population" class="value">--</span>
+					</div>
+					<div class="detail-item">
+						<span class="label">Area</span>
+						<span id="country-area" class="value">-- km²</span>
+					</div>
+					<div class="detail-item">
+						<span class="label">Languages</span>
+						<span id="country-languages" class="value">--</span>
+					</div>
+					<div class="detail-item">
+						<span class="label">Currency</span>
+						<span id="country-currency" class="value">--</span>
+					</div>
+				</div>
+				<div id="country-map-link" class="map-link hidden">
+					<a href="#" target="_blank" rel="noopener">View on Google Maps</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- News Section (Additional API #1) -->
+		<section id="news-section" class="news-section hidden">
+			<h2><span class="api-badge additional">API #1</span> Related News</h2>
+			<div id="news-container" class="news-container">
+				<!-- News articles will be inserted here -->
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer>
+			<p>Assignment 2 - Backend API Integration</p>
+			<p>APIs: OpenWeather | Mediastack | REST Countries</p>
+		</footer>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+
+</html>
