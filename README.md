@@ -281,8 +281,4 @@ The API implements comprehensive error handling:
 
 ## Author
 
-Nurzhan
-
-## License
-
-ISC
+Nurlybek Nurzhan | SE-2432
