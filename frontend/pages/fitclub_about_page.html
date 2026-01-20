@@ -1,0 +1,333 @@
+<!-- fitclub_about_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/fitclub_about_page.css" />
+  <title>Fitclub - About Us</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../index.js" defer></script>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav__logo">
+      <a href="../index.html"><img src="../images/logo.png" alt="logo" /></a>
+    </div>
+
+    <ul class="nav__links" id="navLinks">
+      <li class="link"><a href="./fitclub_home_page.html">Home</a></li>
+      <li class="link"><a href="./fitclub_program_page.html">Program</a></li>
+      <li class="link"><a href="./fitclub_service_page.html">Service</a></li>
+      <li class="link"><a href="./fitclub_about_page.html">About</a></li>
+      <li class="link"><a href="./fitclub_community_page.html">Community</a></li>
+      <li class="link"><a href="./fitclub_admin_page.html">Admin</a></li>
+    </ul>
+
+    <button class="btn" id="joinBtn">
+      <span>Join Now</span>
+    </button>
+
+    <!-- Burger Menu Button -->
+    <div class="nav__burger" id="navBurger">
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="nav__overlay" id="navOverlay"></div>
+  </nav>
+
+  <!-- About Hero -->
+  <section class="about__hero">
+    <span class="bg__blur"></span>
+    <h1>About <span>Fitclub</span></h1>
+    <p>Transforming lives through fitness since 2020. We're more than a gym - we're a community dedicated to helping you
+      achieve your best self.</p>
+  </section>
+
+  <!-- Our Story -->
+  <section class="section__container">
+    <div class="story">
+      <div class="story__content">
+        <h2>Our <span>Story</span></h2>
+        <p>
+          Founded in 2020 by a group of passionate fitness enthusiasts, Fitclub began as a vision to create more than
+          just another gym. We wanted to build a community where people of all fitness levels could come together,
+          support each other, and achieve their health and wellness goals.
+        </p>
+        <p>
+          What started as a small neighborhood fitness center has grown into Astana's premier fitness destination,
+          serving over 2,500 members with state-of-the-art facilities, expert trainers, and innovative programs designed
+          to meet every fitness need.
+        </p>
+        <p>
+          Our journey is built on the belief that fitness should be accessible, enjoyable, and transformative. Every
+          day, we witness incredible transformations - not just physical, but mental and emotional as well.
+        </p>
+        <a href="#" class="btn">Join Our Story</a>
+      </div>
+      <div class="story__image">
+        <i class="ri-heart-pulse-fill"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="mission__vision">
+    <div class="section__container">
+      <h2 class="section__header">Our Purpose</h2>
+      <div class="mission__vision__grid">
+        <div class="mission__card">
+          <h3>Our Mission</h3>
+          <p>
+            To empower individuals to transform their lives through fitness by providing world-class facilities, expert
+            guidance, and a supportive community that makes health and wellness accessible to everyone.
+          </p>
+        </div>
+        <div class="vision__card">
+          <h3>Our Vision</h3>
+          <p>
+            To be the leading fitness community in Kazakhstan, inspiring a healthier nation by creating spaces where
+            people discover their potential, build lasting relationships, and achieve sustainable wellness.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section__container">
+    <h2 class="section__header">Our Values</h2>
+    <p class="section__subheader">
+      The principles that guide everything we do and shape the Fitclub experience.
+    </p>
+
+    <div class="values__grid">
+      <div class="value__card">
+        <i class="ri-team-fill"></i>
+        <h4>Community First</h4>
+        <p>We believe fitness is better together. Our supportive community helps every member feel welcome, motivated,
+          and connected.</p>
+      </div>
+      <div class="value__card">
+        <i class="ri-star-fill"></i>
+        <h4>Excellence</h4>
+        <p>We strive for excellence in everything - from our facilities and programs to the service we provide every
+          member.</p>
+      </div>
+      <div class="value__card">
+        <i class="ri-lightbulb-fill"></i>
+        <h4>Innovation</h4>
+        <p>We continuously evolve our programs, adopt new technologies, and find creative ways to enhance your fitness
+          journey.</p>
+      </div>
+      <div class="value__card">
+        <i class="ri-hand-heart-fill"></i>
+        <h4>Inclusivity</h4>
+        <p>Fitness is for everyone. We create an environment where people of all backgrounds and fitness levels feel
+          valued and supported.</p>
+      </div>
+      <div class="value__card">
+        <i class="ri-medal-fill"></i>
+        <h4>Results</h4>
+        <p>We're committed to helping every member achieve their goals through proven methods and personalized
+          approaches.</p>
+      </div>
+      <div class="value__card">
+        <i class="ri-shield-check-fill"></i>
+        <h4>Integrity</h4>
+        <p>We operate with transparency, honesty, and respect in all our interactions and business practices.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet Our Team -->
+  <section class="team">
+    <div class="section__container">
+      <h2 class="section__header">Meet Our Expert Team</h2>
+      <p class="section__subheader">
+        Our certified trainers and wellness experts are here to guide you every step of the way.
+      </p>
+
+      <div class="team__grid">
+        <div class="team__card">
+          <div class="team__card__image">
+            <i class="ri-user-fill"></i>
+          </div>
+          <div class="team__card__content">
+            <h4>Sarah Mitchell</h4>
+            <div class="role">Head Trainer & Founder</div>
+            <p>Certified personal trainer with 8+ years of experience. Specializes in strength training and
+              transformation programs.</p>
+            <div class="team__card__social">
+              <a href="#"><i class="ri-linkedin-fill"></i></a>
+              <a href="#"><i class="ri-instagram-line"></i></a>
+              <a href="#"><i class="ri-twitter-fill"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="team__card">
+          <div class="team__card__image">
+            <i class="ri-user-fill"></i>
+          </div>
+          <div class="team__card__content">
+            <h4>Mike Rodriguez</h4>
+            <div class="role">Strength Coach</div>
+            <p>Former competitive powerlifter turned coach. Expert in functional movement and athletic performance
+              training.</p>
+            <div class="team__card__social">
+              <a href="#"><i class="ri-linkedin-fill"></i></a>
+              <a href="#"><i class="ri-instagram-line"></i></a>
+              <a href="#"><i class="ri-youtube-fill"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="team__card">
+          <div class="team__card__image">
+            <i class="ri-user-fill"></i>
+          </div>
+          <div class="team__card__content">
+            <h4>Emma Thompson</h4>
+            <div class="role">Yoga & Wellness Instructor</div>
+            <p>500-hour certified yoga instructor and mindfulness coach. Brings balance and zen to our fitness
+              community.</p>
+            <div class="team__card__social">
+              <a href="#"><i class="ri-linkedin-fill"></i></a>
+              <a href="#"><i class="ri-instagram-line"></i></a>
+              <a href="#"><i class="ri-facebook-fill"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="team__card">
+          <div class="team__card__image">
+            <i class="ri-user-fill"></i>
+          </div>
+          <div class="team__card__content">
+            <h4>Dr. Alex Chen</h4>
+            <div class="role">Nutritionist & Wellness Coach</div>
+            <p>Licensed nutritionist helping members achieve their goals through sustainable dietary changes and
+              lifestyle modifications.</p>
+            <div class="team__card__social">
+              <a href="#"><i class="ri-linkedin-fill"></i></a>
+              <a href="#"><i class="ri-instagram-line"></i></a>
+              <a href="#"><i class="ri-twitter-fill"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stats -->
+  <section class="stats">
+    <span class="bg__blur"></span>
+    <div class="section__container">
+      <h2 class="section__header">Our Impact</h2>
+      <p class="section__subheader">
+        Numbers that reflect our commitment to transforming lives and building a healthier community.
+      </p>
+
+      <div class="stats__grid">
+        <div class="stats__item">
+          <h3>2500+</h3>
+          <p>Active Members</p>
+        </div>
+        <div class="stats__item">
+          <h3>50+</h3>
+          <p>Expert Trainers</p>
+        </div>
+        <div class="stats__item">
+          <h3>10,000+</h3>
+          <p>Goals Achieved</p>
+        </div>
+        <div class="stats__item">
+          <h3>5</h3>
+          <p>Years of Excellence</p>
+        </div>
+        <div class="stats__item">
+          <h3>98%</h3>
+          <p>Member Satisfaction</p>
+        </div>
+        <div class="stats__item">
+          <h3>15,000+</h3>
+          <p>Classes Conducted</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="timeline">
+    <div class="section__container">
+      <h2 class="section__header">Our Journey</h2>
+      <p class="section__subheader">
+        Key milestones in our mission to transform the fitness landscape in Kazakhstan.
+      </p>
+
+      <div class="timeline__content">
+        <div class="timeline__item">
+          <div class="timeline__year">2020</div>
+          <div class="timeline__title">Fitclub Founded</div>
+          <div class="timeline__description">
+            Started with a 2,000 sq ft facility and a dream to create Kazakhstan's most welcoming fitness community.
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__year">2021</div>
+          <div class="timeline__title">First Expansion</div>
+          <div class="timeline__description">
+            Doubled our space and added specialized equipment zones for strength training, cardio, and functional
+            fitness.
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__year">2022</div>
+          <div class="timeline__title">Wellness Center Launch</div>
+          <div class="timeline__description">
+            Introduced nutrition coaching, recovery services, and our signature wellness programs for holistic health.
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__year">2023</div>
+          <div class="timeline__title">Digital Innovation</div>
+          <div class="timeline__description">
+            Launched our mobile app and virtual training platform, making fitness accessible anytime, anywhere.
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__year">2024</div>
+          <div class="timeline__title">Community Champion Award</div>
+          <div class="timeline__description">
+            Recognized as "Best Fitness Community" by Astana Health & Wellness Association for our impact on local
+            health.
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__year">2025</div>
+          <div class="timeline__title">Future Vision</div>
+          <div class="timeline__description">
+            Planning our second location and expanding our reach to serve even more members in their fitness journeys.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

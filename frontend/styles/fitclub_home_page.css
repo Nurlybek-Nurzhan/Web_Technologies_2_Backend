@@ -1,0 +1,262 @@
+/* styles/fitclub_home_page.css - HOMEPAGE ONLY */
+/* ========================================== */
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.hero__content {
+  max-width: 800px;
+  z-index: 1;
+}
+
+.hero h4 {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--secondary-color);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.hero h1 {
+  margin-bottom: 1.5rem;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero h1 span {
+  color: var(--secondary-color);
+}
+
+.hero p {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero__buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn--outline {
+  background-color: transparent;
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+.btn--outline:hover {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+/* Features Section */
+.features {
+  padding: 5rem 1rem;
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.features__card {
+  background-color: var(--primary-color-light);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+  border: 2px solid transparent;
+}
+
+.features__card:hover {
+  background-color: var(--primary-color-extra-light);
+  border-color: var(--secondary-color);
+  transform: translateY(-5px);
+}
+
+.features__card i {
+  font-size: 3rem;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.features__card h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.features__card p {
+  color: var(--text-light);
+}
+
+/* Stats Section */
+.stats {
+  background-color: var(--primary-color-light);
+  padding: 5rem 1rem;
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+
+.stats__item h3 {
+  font-size: 3rem;
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.stats__item p {
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+/* CTA Section */
+.cta {
+  padding: 5rem 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.cta__content {
+  max-width: 600px;
+  margin: auto;
+}
+
+.cta h2 {
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.cta p {
+  margin-bottom: 2rem;
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--primary-color-light);
+  padding: 3rem 1rem 1rem;
+  text-align: center;
+}
+
+.footer__content {
+  max-width: var(--max-width);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer__section h3 {
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.footer__section p,
+.footer__section a {
+  color: var(--text-light);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.footer__section a:hover {
+  color: var(--secondary-color);
+}
+
+.footer__socials {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.footer__socials a {
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--secondary-color);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.footer__socials a:hover {
+  color: var(--white);
+  background-color: var(--secondary-color);
+  transform: translateY(-3px);
+}
+
+.footer__bar {
+  border-top: 1px solid var(--primary-color-extra-light);
+  padding-top: 1rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+/* ===================================
+   RESPONSIVE (Page-Specific Only)
+   =================================== */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero__buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .features__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .stats__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}

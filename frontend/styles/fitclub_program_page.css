@@ -1,0 +1,395 @@
+/* styles/fitclub_program_page.css - PROGRAM PAGE ONLY */
+/* ================================================= */
+
+/* Program Hero */
+.program__hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    var(--primary-color-light);
+  padding: 5rem 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.program__hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.program__hero h1 span {
+  color: var(--secondary-color);
+}
+
+.program__hero p {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Program Categories */
+.program__categories {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 3rem 0;
+  flex-wrap: wrap;
+}
+
+.category__btn {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color-light);
+  border: 2px solid var(--primary-color-extra-light);
+  color: var(--white);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.category__btn.active,
+.category__btn:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+/* Program Grid */
+.program__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.program__card {
+  background-color: var(--primary-color-light);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.program__card:hover {
+  transform: translateY(-10px);
+  border-color: var(--secondary-color);
+  box-shadow: 0 20px 40px rgba(139, 21, 56, 0.2);
+}
+
+.program__card__image {
+  height: 200px;
+  background: linear-gradient(
+    45deg,
+    var(--secondary-color),
+    var(--secondary-color-light)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: var(--white);
+}
+
+.program__card__content {
+  padding: 2rem;
+}
+
+.program__card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--white);
+}
+
+.program__card__details {
+  display: flex;
+  gap: 2rem;
+  margin: 1rem 0;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+.program__card__details span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.program__card p {
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.program__card__features {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.program__card__features li {
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.program__card__features i {
+  color: var(--secondary-color);
+  font-size: 1.1rem;
+  min-width: 18px;
+}
+
+.program__card__price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
+.price span {
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+/* Program Details Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal__content {
+  background-color: var(--primary-color-light);
+  margin: auto;
+  padding: 2.5rem 2rem 2rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal__close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 2rem;
+  color: var(--text-light);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.modal__close:hover {
+  color: var(--secondary-color);
+  background-color: rgba(139, 21, 56, 0.2);
+}
+
+/* Schedule Section */
+.schedule {
+  background-color: var(--primary-color-light);
+  padding: 5rem 1rem;
+}
+
+.schedule__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.schedule__day {
+  background-color: var(--primary-color);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 4px solid var(--secondary-color);
+}
+
+.schedule__day h4 {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.schedule__class {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--primary-color-extra-light);
+}
+
+.schedule__class:last-child {
+  border-bottom: none;
+}
+
+.schedule__time {
+  color: var(--secondary-color);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.schedule__name {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.schedule__trainer {
+  color: var(--text-light);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* ===================================
+   RESPONSIVE (Page-Specific Only)
+   =================================== */
+@media (max-width: 768px) {
+  .program__hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .program__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .program__categories {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .category__btn {
+    width: 80%;
+    max-width: 300px;
+  }
+
+  .schedule__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .program__card__details {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .program__card__price {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .price {
+    font-size: 1.8rem;
+  }
+}
+
+/* Loading & Error States */
+.loading__state,
+.error__state,
+.empty__state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--text-light);
+  grid-column: 1 / -1;
+}
+
+.loading__state i,
+.error__state i,
+.empty__state i {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+}
+
+.loading__state i {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.error__state i {
+  color: #ff6b6b;
+}
+
+.error__state .btn {
+  margin-top: 1rem;
+}
+
+/* Modal Info Section */
+.modal__info {
+  background-color: var(--primary-color);
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.modal__info p {
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.modal__info p:last-child {
+  margin-bottom: 0;
+}
+
+.modal__info strong {
+  color: var(--white);
+}
+
+.modal__price {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.price__tag {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
+.price__tag small {
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+.btn--outline {
+  background-color: transparent;
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+.btn--outline:hover {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}

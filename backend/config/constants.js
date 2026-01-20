@@ -1,0 +1,1 @@
+export const DB_Name = "Assignment_3_WDB_Nurzhan"

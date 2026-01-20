@@ -1,0 +1,462 @@
+<!-- fitclub_service_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/fitclub_service_page.css" />
+  <title>Fitclub - Services</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../index.js" defer></script>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav__logo">
+      <a href="../index.html"><img src="../images/logo.png" alt="logo" /></a>
+    </div>
+
+    <ul class="nav__links" id="navLinks">
+      <li class="link"><a href="./fitclub_home_page.html">Home</a></li>
+      <li class="link"><a href="./fitclub_program_page.html">Program</a></li>
+      <li class="link"><a href="./fitclub_service_page.html">Service</a></li>
+      <li class="link"><a href="./fitclub_about_page.html">About</a></li>
+      <li class="link"><a href="./fitclub_community_page.html">Community</a></li>
+      <li class="link"><a href="./fitclub_admin_page.html">Admin</a></li>
+    </ul>
+
+    <button class="btn" id="joinBtn">
+      <span>Join Now</span>
+    </button>
+
+    <!-- Burger Menu Button -->
+    <div class="nav__burger" id="navBurger">
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="nav__overlay" id="navOverlay"></div>
+  </nav>
+
+  <!-- Service Hero -->
+  <section class="service__hero">
+    <span class="bg__blur"></span>
+    <h1>Our <span>Premium</span> Services</h1>
+    <p>Experience the ultimate fitness journey with our comprehensive range of services designed to meet all your health
+      and wellness needs.</p>
+  </section>
+
+  <!-- Main Services -->
+  <section class="section__container">
+    <h2 class="section__header">Choose Your Service Plan</h2>
+    <p class="section__subheader">
+      From personal training to group classes, we offer flexible service options to match your fitness goals and
+      lifestyle.
+    </p>
+
+    <div class="services__grid">
+      <!-- Personal Training -->
+      <div class="service__card">
+        <div class="service__card__icon">
+          <i class="ri-user-star-fill"></i>
+        </div>
+        <h3>Personal Training</h3>
+        <p>Get one-on-one attention from our certified trainers with customized workout plans tailored to your specific
+          goals.</p>
+        <ul class="service__card__features">
+          <li><i class="ri-checkbox-circle-fill"></i> Personalized workout programs</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Nutrition consultation</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Progress tracking & analysis</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Flexible scheduling</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Goal-specific training</li>
+        </ul>
+        <div class="service__card__price">
+          <div class="price">$120<span class="period">/session</span></div>
+        </div>
+        <div class="service__card__cta">
+          <button class="btn" onclick="bookService('Personal Training')">Book Session</button>
+        </div>
+      </div>
+
+      <!-- Group Training -->
+      <div class="service__card service__card--premium">
+        <div class="service__card__icon">
+          <i class="ri-team-fill"></i>
+        </div>
+        <h3>Small Group Training</h3>
+        <p>Train with 2-4 friends in a semi-private setting. Get personalized attention while sharing the cost and
+          motivation.</p>
+        <ul class="service__card__features">
+          <li><i class="ri-checkbox-circle-fill"></i> 2-4 person groups</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Customized group workouts</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Team building exercises</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Shared motivation</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Cost-effective training</li>
+        </ul>
+        <div class="service__card__price">
+          <div class="price">$60<span class="period">/person/session</span></div>
+        </div>
+        <div class="service__card__cta">
+          <button class="btn" onclick="bookService('Group Training')">Book Session</button>
+        </div>
+      </div>
+
+      <!-- Nutrition Coaching -->
+      <div class="service__card">
+        <div class="service__card__icon">
+          <i class="ri-restaurant-line"></i>
+        </div>
+        <h3>Nutrition Coaching</h3>
+        <p>Transform your relationship with food with our certified nutritionists who create sustainable meal plans.</p>
+        <ul class="service__card__features">
+          <li><i class="ri-checkbox-circle-fill"></i> Custom meal planning</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Dietary consultations</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Recipe suggestions</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Supplement guidance</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Ongoing support</li>
+        </ul>
+        <div class="service__card__price">
+          <div class="price">$80<span class="period">/consultation</span></div>
+        </div>
+        <div class="service__card__cta">
+          <button class="btn" onclick="bookService('Nutrition Coaching')">Book Session</button>
+        </div>
+      </div>
+
+      <!-- Wellness Assessment -->
+      <div class="service__card">
+        <div class="service__card__icon">
+          <i class="ri-heart-pulse-fill"></i>
+        </div>
+        <h3>Fitness Assessment</h3>
+        <p>Comprehensive fitness evaluation including body composition, flexibility, strength, and cardiovascular
+          assessments.</p>
+        <ul class="service__card__features">
+          <li><i class="ri-checkbox-circle-fill"></i> Body composition analysis</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Cardiovascular testing</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Strength assessment</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Flexibility evaluation</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Detailed report & recommendations</li>
+        </ul>
+        <div class="service__card__price">
+          <div class="price">$150<span class="period">/assessment</span></div>
+        </div>
+        <div class="service__card__cta">
+          <button class="btn" onclick="bookService('Fitness Assessment')">Book Session</button>
+        </div>
+      </div>
+
+      <!-- Recovery Services -->
+      <div class="service__card">
+        <div class="service__card__icon">
+          <i class="ri-spa-line"></i>
+        </div>
+        <h3>Recovery & Wellness</h3>
+        <p>Enhance your recovery with massage therapy, stretching sessions, and other wellness services.</p>
+        <ul class="service__card__features">
+          <li><i class="ri-checkbox-circle-fill"></i> Sports massage therapy</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Guided stretching sessions</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Sauna & steam room access</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Recovery planning</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Stress management techniques</li>
+        </ul>
+        <div class="service__card__price">
+          <div class="price">$90<span class="period">/session</span></div>
+        </div>
+        <div class="service__card__cta">
+          <button class="btn" onclick="bookService('Recovery Services')">Book Session</button>
+        </div>
+      </div>
+
+      <!-- Virtual Training -->
+      <div class="service__card">
+        <div class="service__card__icon">
+          <i class="ri-vidicon-fill"></i>
+        </div>
+        <h3>Virtual Training</h3>
+        <p>Train from anywhere with our live virtual sessions and on-demand workout library.</p>
+        <ul class="service__card__features">
+          <li><i class="ri-checkbox-circle-fill"></i> Live virtual sessions</li>
+          <li><i class="ri-checkbox-circle-fill"></i> On-demand workout library</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Mobile app access</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Progress tracking</li>
+          <li><i class="ri-checkbox-circle-fill"></i> 24/7 support</li>
+        </ul>
+        <div class="service__card__price">
+          <div class="price">$40<span class="period">/month</span></div>
+        </div>
+        <div class="service__card__cta">
+          <button class="btn" onclick="bookService('Virtual Training')">Start Trial</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Facilities -->
+  <section class="facilities">
+    <div class="section__container">
+      <h2 class="section__header">Premium Facilities</h2>
+      <p class="section__subheader">
+        Access to state-of-the-art facilities and equipment designed to enhance your fitness experience.
+      </p>
+
+      <div class="facilities__grid">
+        <div class="facility__card">
+          <i class="ri-building-line"></i>
+          <h4>Modern Gym Floor</h4>
+          <p>Spacious workout area with the latest cardio and strength training equipment</p>
+        </div>
+        <div class="facility__card">
+          <i class="ri-swimming-line"></i>
+          <h4>Olympic Pool</h4>
+          <p>25-meter Olympic-standard swimming pool for lap swimming and aqua fitness</p>
+        </div>
+        <div class="facility__card">
+          <i class="ri-basketball-line"></i>
+          <h4>Sports Courts</h4>
+          <p>Multi-purpose courts for basketball, volleyball, and other recreational sports</p>
+        </div>
+        <div class="facility__card">
+          <i class="ri-fire-line"></i>
+          <h4>Sauna & Steam</h4>
+          <p>Relaxing sauna and steam rooms for post-workout recovery</p>
+        </div>
+        <div class="facility__card">
+          <i class="ri-parent-line"></i>
+          <h4>Kids Zone</h4>
+          <p>Safe and fun childcare area while parents work out</p>
+        </div>
+        <div class="facility__card">
+          <i class="ri-parking-line"></i>
+          <h4>Free Parking</h4>
+          <p>Ample free parking spaces available for all members</p>
+        </div>
+        <div class="facility__card">
+          <i class="ri-shirt-line"></i>
+          <h4>Locker Rooms</h4>
+          <p>Clean, spacious locker rooms with shower facilities</p>
+        </div>
+        <div class="facility__card">
+          <i class="ri-cup-line"></i>
+          <h4>Juice Bar</h4>
+          <p>Healthy smoothies and snacks to fuel your workouts</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Form -->
+  <section class="booking">
+    <span class="bg__blur"></span>
+    <div class="section__container">
+      <h2 class="section__header">Book Your Service</h2>
+      <p class="section__subheader">
+        Ready to get started? Fill out the form below and we'll contact you to schedule your session.
+      </p>
+
+      <form class="booking__form" onsubmit="submitBooking(event)">
+        <div class="form__row">
+          <div class="form__group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required>
+          </div>
+          <div class="form__group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required>
+          </div>
+        </div>
+
+        <div class="form__row">
+          <div class="form__group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form__group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+        </div>
+
+        <div class="form__group">
+          <label for="service">Service</label>
+          <select id="service" name="service" required>
+            <option value="">Select a service</option>
+            <option value="personal-training">Personal Training</option>
+            <option value="group-training">Small Group Training</option>
+            <option value="nutrition-coaching">Nutrition Coaching</option>
+            <option value="fitness-assessment">Fitness Assessment</option>
+            <option value="recovery-services">Recovery & Wellness</option>
+            <option value="virtual-training">Virtual Training</option>
+          </select>
+        </div>
+
+        <div class="form__row">
+          <div class="form__group">
+            <label for="preferredDate">Preferred Date</label>
+            <input type="date" id="preferredDate" name="preferredDate" required>
+          </div>
+          <div class="form__group">
+            <label for="preferredTime">Preferred Time</label>
+            <select id="preferredTime" name="preferredTime" required>
+              <option value="">Select time</option>
+              <option value="06:00">6:00 AM</option>
+              <option value="07:00">7:00 AM</option>
+              <option value="08:00">8:00 AM</option>
+              <option value="09:00">9:00 AM</option>
+              <option value="10:00">10:00 AM</option>
+              <option value="17:00">5:00 PM</option>
+              <option value="18:00">6:00 PM</option>
+              <option value="19:00">7:00 PM</option>
+              <option value="20:00">8:00 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form__group">
+          <label for="message">Additional Information</label>
+          <textarea id="message" name="message"
+            placeholder="Tell us about your fitness goals, experience level, or any special requirements..."></textarea>
+        </div>
+
+        <button type="submit" class="btn">Book My Session</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="section__container">
+      <h2 class="section__header">What Our Clients Say</h2>
+      <p class="section__subheader">
+        Don't just take our word for it. Here's what our satisfied clients have to say about our services.
+      </p>
+
+      <div class="testimonials__grid">
+        <div class="testimonial__card">
+          <div class="testimonial__content">
+            "The personal training service transformed my approach to fitness. My trainer was incredibly knowledgeable
+            and helped me achieve results I never thought possible."
+          </div>
+          <div class="testimonial__author">
+            <div class="testimonial__avatar">AM</div>
+            <div class="testimonial__info">
+              <h5>Anna Miller</h5>
+              <p>Marketing Executive</p>
+            </div>
+          </div>
+          <div class="testimonial__rating">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+        </div>
+
+        <div class="testimonial__card">
+          <div class="testimonial__content">
+            "Small group training was perfect for me. Great energy, personalized attention, and I made some amazing
+            workout buddies along the way!"
+          </div>
+          <div class="testimonial__author">
+            <div class="testimonial__avatar">JD</div>
+            <div class="testimonial__info">
+              <h5>John Davis</h5>
+              <p>Software Engineer</p>
+            </div>
+          </div>
+          <div class="testimonial__rating">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+        </div>
+
+        <div class="testimonial__card">
+          <div class="testimonial__content">
+            "The nutrition coaching completely changed my relationship with food. I learned to eat for my goals while
+            still enjoying the foods I love."
+          </div>
+          <div class="testimonial__author">
+            <div class="testimonial__avatar">SC</div>
+            <div class="testimonial__info">
+              <h5>Sarah Chen</h5>
+              <p>Teacher</p>
+            </div>
+          </div>
+          <div class="testimonial__rating">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Book service function
+    function bookService(serviceName) {
+      const serviceSelect = document.getElementById('service');
+      const serviceMap = {
+        'Personal Training': 'personal-training',
+        'Group Training': 'group-training',
+        'Nutrition Coaching': 'nutrition-coaching',
+        'Fitness Assessment': 'fitness-assessment',
+        'Recovery Services': 'recovery-services',
+        'Virtual Training': 'virtual-training'
+      };
+
+      serviceSelect.value = serviceMap[serviceName] || '';
+      document.querySelector('.booking').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Form submission
+    function submitBooking(event) {
+      event.preventDefault();
+
+      // Get form data
+      const formData = new FormData(event.target);
+      const bookingData = Object.fromEntries(formData.entries());
+
+      // Show success message (in real app, this would submit to a server)
+      alert(`Thank you for your booking request!\n\nService: ${bookingData.service}\nDate: ${bookingData.preferredDate}\nTime: ${bookingData.preferredTime}\n\nWe'll contact you within 24 hours to confirm your appointment.`);
+
+      // Reset form
+      event.target.reset();
+    }
+
+    // Set minimum date to today
+    document.getElementById('preferredDate').min = new Date().toISOString().split('T')[0];
+
+    // Navigation functions
+    function goHome() {
+      console.log('Navigate to Home page');
+    }
+
+    function showProgram() {
+      console.log('Navigate to Program page');
+    }
+
+    function showAbout() {
+      console.log('Navigate to About page');
+    }
+
+    function showCommunity() {
+      console.log('Navigate to Community page');
+    }
+  </script>
+</body>
+
+</html>

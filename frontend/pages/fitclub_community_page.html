@@ -1,0 +1,678 @@
+<!-- fitclub_community_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/fitclub_community_page.css" />
+  <title>Fitclub - Community</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../index.js" defer></script>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav__logo">
+      <a href="../index.html"><img src="../images/logo.png" alt="logo" /></a>
+    </div>
+
+    <ul class="nav__links" id="navLinks">
+      <li class="link"><a href="./fitclub_home_page.html">Home</a></li>
+      <li class="link"><a href="./fitclub_program_page.html">Program</a></li>
+      <li class="link"><a href="./fitclub_service_page.html">Service</a></li>
+      <li class="link"><a href="./fitclub_about_page.html">About</a></li>
+      <li class="link"><a href="./fitclub_community_page.html">Community</a></li>
+      <li class="link"><a href="./fitclub_admin_page.html">Admin</a></li>
+    </ul>
+
+    <button class="btn" id="joinBtn">
+      <span>Join Now</span>
+    </button>
+
+    <!-- Burger Menu Button -->
+    <div class="nav__burger" id="navBurger">
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="nav__overlay" id="navOverlay"></div>
+  </nav>
+
+  <!-- Community Hero -->
+  <section class="community__hero">
+    <span class="bg__blur"></span>
+    <h1>Join Our Fitness <span>Community</span></h1>
+    <p>Connect with like-minded individuals, share your journey, participate in challenges, and celebrate achievements
+      together. Your fitness family awaits!</p>
+    <div class="hero__buttons">
+      <a href="#workoutLogger" class="btn">Log Workout</a>
+      <a href="#leaderboard" class="btn btn--outline">View Leaderboard</a>
+    </div>
+  </section>
+
+  <!-- Workout Logger Section -->
+  <section class="section__container" id="workoutLogger">
+    <h2 class="section__header">Personal Workout Logger</h2>
+    <p class="section__subheader">
+      Track your fitness journey by logging your daily workouts. Create, view, and manage your exercise records.
+    </p>
+
+    <div class="workout__container">
+      <!-- Workout Form -->
+      <div class="workout__form__container">
+        <h3><i class="ri-add-circle-line"></i> Log New Workout</h3>
+        <form id="workoutForm" class="workout__form">
+          <div class="form__row">
+            <div class="form__group">
+              <label for="workoutName">Workout Name *</label>
+              <input type="text" id="workoutName" name="name" placeholder="e.g., Morning Leg Day" required>
+            </div>
+            <div class="form__group">
+              <label for="userName">Your Name</label>
+              <input type="text" id="userName" name="userName" placeholder="e.g., John Doe">
+            </div>
+          </div>
+
+          <div class="form__row">
+            <div class="form__group">
+              <label for="exercise">Exercise *</label>
+              <input type="text" id="exercise" name="exercise" placeholder="e.g., Squats, Bench Press" required>
+            </div>
+            <div class="form__group">
+              <label for="category">Category *</label>
+              <select id="category" name="category" required>
+                <option value="">Select Category</option>
+                <option value="Strength Training">Strength Training</option>
+                <option value="Cardio">Cardio</option>
+                <option value="Flexibility">Flexibility</option>
+                <option value="HIIT">HIIT</option>
+                <option value="Sports">Sports</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form__row">
+            <div class="form__group">
+              <label for="sets">Sets *</label>
+              <input type="number" id="sets" name="sets" placeholder="4" min="1" max="20" required>
+            </div>
+            <div class="form__group">
+              <label for="reps">Reps *</label>
+              <input type="number" id="reps" name="reps" placeholder="12" min="1" max="100" required>
+            </div>
+            <div class="form__group">
+              <label for="weight">Weight (kg)</label>
+              <input type="number" id="weight" name="weight" placeholder="0" min="0" max="500">
+            </div>
+            <div class="form__group">
+              <label for="duration">Duration (min)</label>
+              <input type="number" id="duration" name="duration" placeholder="0" min="0" max="300">
+            </div>
+          </div>
+
+          <div class="form__group">
+            <label for="notes">Notes (optional)</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Any additional notes about your workout..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--full">
+            <i class="ri-save-line"></i> Save Workout
+          </button>
+        </form>
+      </div>
+
+      <!-- Workout History -->
+      <div class="workout__history__container">
+        <div class="history__header">
+          <h3><i class="ri-history-line"></i> Recent Workouts</h3>
+          <button class="btn btn--small" onclick="loadWorkouts()">
+            <i class="ri-refresh-line"></i> Refresh
+          </button>
+        </div>
+
+        <div id="workoutLoadingState" class="loading__state">
+          <i class="ri-loader-4-line"></i>
+          <p>Loading workouts...</p>
+        </div>
+
+        <div id="workoutErrorState" class="error__state" style="display: none;">
+          <i class="ri-error-warning-line"></i>
+          <p id="workoutErrorMessage">Failed to load workouts</p>
+          <button class="btn btn--small" onclick="loadWorkouts()">Try Again</button>
+        </div>
+
+        <div id="workoutList" class="workout__list">
+          <!-- Workouts will be loaded dynamically -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Features -->
+  <section class="section__container">
+    <h2 class="section__header">Why Our Community Rocks</h2>
+    <p class="section__subheader">
+      More than just a gym - we're a supportive family that grows stronger together.
+    </p>
+
+    <div class="community__features">
+      <div class="feature__card">
+        <i class="ri-group-fill"></i>
+        <h3>Supportive Network</h3>
+        <p>Connect with members who share your goals and challenges. Get encouragement, tips, and motivation from people
+          who understand your journey.</p>
+      </div>
+      <div class="feature__card">
+        <i class="ri-trophy-fill"></i>
+        <h3>Fitness Challenges</h3>
+        <p>Participate in monthly challenges that push your limits and keep you engaged. Compete, have fun, and win
+          exciting prizes.</p>
+      </div>
+      <div class="feature__card">
+        <i class="ri-calendar-event-fill"></i>
+        <h3>Exclusive Events</h3>
+        <p>Join member-only events, workshops, and social gatherings. From fitness seminars to healthy cooking classes
+          and fun social mixers.</p>
+      </div>
+      <div class="feature__card">
+        <i class="ri-medal-fill"></i>
+        <h3>Achievement Recognition</h3>
+        <p>Celebrate your milestones with our community. Get recognized for your progress and inspire others on their
+          fitness journey.</p>
+      </div>
+      <div class="feature__card">
+        <i class="ri-user-star-fill"></i>
+        <h3>Mentorship Program</h3>
+        <p>Get paired with experienced members or become a mentor yourself. Share knowledge, provide support, and grow
+          together.</p>
+      </div>
+      <div class="feature__card">
+        <i class="ri-chat-3-fill"></i>
+        <h3>Online Forums</h3>
+        <p>Stay connected 24/7 through our online community platform. Ask questions, share tips, and stay motivated even
+          when you're not at the gym.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories -->
+  <section class="success__stories">
+    <div class="section__container">
+      <h2 class="section__header">Community Success Stories</h2>
+      <p class="section__subheader">
+        Real transformations from real people in our community. Their stories might inspire your next breakthrough.
+      </p>
+
+      <div class="stories__grid">
+        <div class="story__card">
+          <div class="story__header">
+            <div class="story__avatar">AM</div>
+            <div class="story__info">
+              <h4>Anna Martinez</h4>
+              <p>Member since January 2023</p>
+            </div>
+          </div>
+          <div class="story__content">
+            "I joined Fitclub feeling intimidated and out of shape. The community immediately welcomed me with open
+            arms. My workout buddy Sarah kept me accountable, and the group challenges made fitness fun again!"
+          </div>
+          <div class="story__achievement">
+            <strong>Achievement:</strong> Lost 30 lbs, completed first 5K, now mentoring new members
+          </div>
+        </div>
+
+        <div class="story__card">
+          <div class="story__header">
+            <div class="story__avatar">JD</div>
+            <div class="story__info">
+              <h4>James Davis</h4>
+              <p>Member since March 2022</p>
+            </div>
+          </div>
+          <div class="story__content">
+            "After my knee surgery, I thought my active days were over. The Fitclub community and trainers helped me
+            adapt my workouts. Now I'm stronger than before my injury and helping others with similar challenges."
+          </div>
+          <div class="story__achievement">
+            <strong>Achievement:</strong> Full recovery from injury, deadlifted 300 lbs, community mentor of the year
+          </div>
+        </div>
+
+        <div class="story__card">
+          <div class="story__header">
+            <div class="story__avatar">SC</div>
+            <div class="story__info">
+              <h4>Sophie Chen</h4>
+              <p>Member since June 2023</p>
+            </div>
+          </div>
+          <div class="story__content">
+            "As a busy mom of two, I struggled to find time for fitness. The Fitclub community created a support system
+            that made it possible. The childcare and flexible class times were game-changers!"
+          </div>
+          <div class="story__achievement">
+            <strong>Achievement:</strong> Consistent 5x/week workouts, improved energy levels, started family fitness
+            blog
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upcoming Events -->
+  <section class="section__container">
+    <h2 class="section__header">Upcoming Community Events</h2>
+    <p class="section__subheader">
+      Don't miss out on these exciting events designed to bring our community together and enhance your fitness journey.
+    </p>
+
+    <div class="events__grid">
+      <div class="event__card">
+        <div class="event__card__image">
+          <i class="ri-run-line"></i>
+          <div class="event__date">Mar 15</div>
+        </div>
+        <div class="event__card__content">
+          <h3>5K Community Run</h3>
+          <div class="event__details">
+            <span><i class="ri-time-line"></i> 7:00 AM</span>
+            <span><i class="ri-map-pin-line"></i> Central Park</span>
+            <span><i class="ri-user-line"></i> All Levels</span>
+          </div>
+          <p>Join us for our monthly community run! All fitness levels welcome. Post-run healthy breakfast and
+            socializing included.</p>
+          <div class="event__card__footer">
+            <div class="event__attendees">45 attending</div>
+            <button class="btn" onclick="joinEvent(this)">Join Event</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="event__card">
+        <div class="event__card__image">
+          <i class="ri-restaurant-line"></i>
+          <div class="event__date">Mar 22</div>
+        </div>
+        <div class="event__card__content">
+          <h3>Healthy Cooking Workshop</h3>
+          <div class="event__details">
+            <span><i class="ri-time-line"></i> 2:00 PM</span>
+            <span><i class="ri-map-pin-line"></i> Studio B</span>
+            <span><i class="ri-user-line"></i> 20 spots</span>
+          </div>
+          <p>Learn to prepare delicious, nutritious meals that support your fitness goals. Recipe cards and samples
+            included!</p>
+          <div class="event__card__footer">
+            <div class="event__attendees">12 attending</div>
+            <button class="btn" onclick="joinEvent(this)">Reserve Spot</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="event__card">
+        <div class="event__card__image">
+          <i class="ri-heart-pulse-fill"></i>
+          <div class="event__date">Mar 29</div>
+        </div>
+        <div class="event__card__content">
+          <h3>Fitness Challenge Kickoff</h3>
+          <div class="event__details">
+            <span><i class="ri-time-line"></i> 6:00 PM</span>
+            <span><i class="ri-map-pin-line"></i> Main Floor</span>
+            <span><i class="ri-trophy-line"></i> Prizes!</span>
+          </div>
+          <p>Launch of our 30-day spring fitness challenge! Team formation, goal setting, and challenge rules
+            explanation.</p>
+          <div class="event__card__footer">
+            <div class="event__attendees">67 attending</div>
+            <button class="btn" onclick="joinEvent(this)">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leaderboard -->
+  <section class="leaderboard" id="leaderboard">
+    <span class="bg__blur"></span>
+    <div class="section__container">
+      <h2 class="section__header">Community Leaderboard</h2>
+      <p class="section__subheader">
+        Celebrating our most active and dedicated community members this month.
+      </p>
+
+      <div class="leaderboard__content">
+        <div class="leaderboard__header">
+          <h3>March Fitness Challenge</h3>
+          <p>Top performers this month</p>
+        </div>
+        <ul class="leaderboard__list">
+          <li class="leaderboard__item">
+            <div class="leaderboard__rank leaderboard__rank--1">1</div>
+            <div class="leaderboard__user">
+              <div class="leaderboard__avatar">MR</div>
+              <div class="leaderboard__info">
+                <h5>Mike Rodriguez</h5>
+                <p>Strength Coach</p>
+              </div>
+            </div>
+            <div class="leaderboard__score">12,450</div>
+          </li>
+          <li class="leaderboard__item">
+            <div class="leaderboard__rank leaderboard__rank--2">2</div>
+            <div class="leaderboard__user">
+              <div class="leaderboard__avatar">SM</div>
+              <div class="leaderboard__info">
+                <h5>Sarah Mitchell</h5>
+                <p>Personal Trainer</p>
+              </div>
+            </div>
+            <div class="leaderboard__score">11,890</div>
+          </li>
+          <li class="leaderboard__item">
+            <div class="leaderboard__rank leaderboard__rank--3">3</div>
+            <div class="leaderboard__user">
+              <div class="leaderboard__avatar">JD</div>
+              <div class="leaderboard__info">
+                <h5>James Davis</h5>
+                <p>Community Member</p>
+              </div>
+            </div>
+            <div class="leaderboard__score">10,230</div>
+          </li>
+          <li class="leaderboard__item">
+            <div class="leaderboard__rank">4</div>
+            <div class="leaderboard__user">
+              <div class="leaderboard__avatar">AM</div>
+              <div class="leaderboard__info">
+                <h5>Anna Martinez</h5>
+                <p>Community Member</p>
+              </div>
+            </div>
+            <div class="leaderboard__score">9,875</div>
+          </li>
+          <li class="leaderboard__item">
+            <div class="leaderboard__rank">5</div>
+            <div class="leaderboard__user">
+              <div class="leaderboard__avatar">SC</div>
+              <div class="leaderboard__info">
+                <h5>Sophie Chen</h5>
+                <p>Community Member</p>
+              </div>
+            </div>
+            <div class="leaderboard__score">9,340</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join Community CTA -->
+  <section class="section__container">
+    <span class="bg__blur"></span>
+    <div class="cta__box">
+      <h2>Ready to Join Our Amazing Community?</h2>
+      <p>
+        Become part of a supportive fitness family that celebrates every milestone, supports every struggle, and makes
+        the journey enjoyable. Your transformation story starts here!
+      </p>
+      <div class="cta__buttons">
+        <a href="#" class="btn">Start Your Membership</a>
+        <a href="#" class="btn btn--outline">Visit Our Gym</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const API_URL = 'http://localhost:5000/api';
+    let allWorkouts = [];
+
+    // Load workouts on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadWorkouts();
+      setupWorkoutForm();
+    });
+
+    // Setup workout form submission
+    function setupWorkoutForm() {
+      const form = document.getElementById('workoutForm');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await saveWorkout();
+      });
+    }
+
+    // Load workouts from API
+    async function loadWorkouts() {
+      const loadingState = document.getElementById('workoutLoadingState');
+      const errorState = document.getElementById('workoutErrorState');
+      const workoutList = document.getElementById('workoutList');
+
+      loadingState.style.display = 'flex';
+      errorState.style.display = 'none';
+      workoutList.innerHTML = '';
+
+      try {
+        const response = await fetch(`${API_URL}/workouts`);
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch workouts');
+        }
+
+        allWorkouts = await response.json();
+        loadingState.style.display = 'none';
+
+        if (allWorkouts.length === 0) {
+          workoutList.innerHTML = `
+            <div class="empty__state">
+              <i class="ri-file-list-3-line"></i>
+              <p>No workouts logged yet. Start tracking your fitness journey!</p>
+            </div>
+          `;
+          return;
+        }
+
+        renderWorkouts(allWorkouts);
+      } catch (error) {
+        console.error('Error loading workouts:', error);
+        loadingState.style.display = 'none';
+        errorState.style.display = 'flex';
+        document.getElementById('workoutErrorMessage').textContent = 'Failed to load workouts. Make sure the server is running.';
+      }
+    }
+
+    // Render workouts to the list
+    function renderWorkouts(workouts) {
+      const workoutList = document.getElementById('workoutList');
+      workoutList.innerHTML = '';
+
+      workouts.forEach(workout => {
+        const card = createWorkoutCard(workout);
+        workoutList.appendChild(card);
+      });
+    }
+
+    // Create a workout card element
+    function createWorkoutCard(workout) {
+      const card = document.createElement('div');
+      card.className = 'workout__card';
+      card.dataset.id = workout._id;
+
+      const date = new Date(workout.createdAt).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      });
+
+      card.innerHTML = `
+        <div class="workout__card__header">
+          <div class="workout__card__title">
+            <h4>${workout.name}</h4>
+            <span class="workout__category">${workout.category}</span>
+          </div>
+          <div class="workout__card__actions">
+            <button class="action__btn action__btn--delete" onclick="deleteWorkout('${workout._id}')" title="Delete">
+              <i class="ri-delete-bin-line"></i>
+            </button>
+          </div>
+        </div>
+        <div class="workout__card__body">
+          <div class="workout__exercise">${workout.exercise}</div>
+          <div class="workout__stats">
+            <span><i class="ri-stack-line"></i> ${workout.sets} sets</span>
+            <span><i class="ri-repeat-line"></i> ${workout.reps} reps</span>
+            ${workout.weight > 0 ? `<span><i class="ri-scales-line"></i> ${workout.weight} kg</span>` : ''}
+            ${workout.duration > 0 ? `<span><i class="ri-time-line"></i> ${workout.duration} min</span>` : ''}
+          </div>
+          ${workout.notes ? `<div class="workout__notes">${workout.notes}</div>` : ''}
+        </div>
+        <div class="workout__card__footer">
+          <span class="workout__user"><i class="ri-user-line"></i> ${workout.userName}</span>
+          <span class="workout__date"><i class="ri-calendar-line"></i> ${date}</span>
+        </div>
+      `;
+
+      return card;
+    }
+
+    // Save new workout
+    async function saveWorkout() {
+      const form = document.getElementById('workoutForm');
+      const formData = new FormData(form);
+
+      const workout = {
+        name: formData.get('name'),
+        exercise: formData.get('exercise'),
+        sets: parseInt(formData.get('sets')),
+        reps: parseInt(formData.get('reps')),
+        weight: parseInt(formData.get('weight')) || 0,
+        duration: parseInt(formData.get('duration')) || 0,
+        category: formData.get('category'),
+        notes: formData.get('notes') || '',
+        userName: formData.get('userName') || 'Anonymous'
+      };
+
+      try {
+        const response = await fetch(`${API_URL}/workouts`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(workout)
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.message || 'Failed to save workout');
+        }
+
+        const savedWorkout = await response.json();
+
+        // Add to list and refresh
+        allWorkouts.unshift(savedWorkout);
+        renderWorkouts(allWorkouts);
+
+        // Reset form
+        form.reset();
+
+        // Show success message
+        showNotification('Workout saved successfully!', 'success');
+      } catch (error) {
+        console.error('Error saving workout:', error);
+        showNotification(error.message || 'Failed to save workout', 'error');
+      }
+    }
+
+    // Delete workout
+    async function deleteWorkout(id) {
+      if (!confirm('Are you sure you want to delete this workout?')) {
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_URL}/workouts/${id}`, {
+          method: 'DELETE'
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to delete workout');
+        }
+
+        // Remove from list
+        allWorkouts = allWorkouts.filter(w => w._id !== id);
+        renderWorkouts(allWorkouts);
+
+        showNotification('Workout deleted successfully!', 'success');
+      } catch (error) {
+        console.error('Error deleting workout:', error);
+        showNotification('Failed to delete workout', 'error');
+      }
+    }
+
+    // Show notification
+    function showNotification(message, type) {
+      const notification = document.createElement('div');
+      notification.className = `notification notification--${type}`;
+      notification.innerHTML = `
+        <i class="ri-${type === 'success' ? 'checkbox-circle' : 'error-warning'}-line"></i>
+        <span>${message}</span>
+      `;
+
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.classList.add('notification--show');
+      }, 100);
+
+      setTimeout(() => {
+        notification.classList.remove('notification--show');
+        setTimeout(() => notification.remove(), 300);
+      }, 3000);
+    }
+
+    // Event RSVP functionality
+    function joinEvent(button) {
+      const attendeeElement = button.parentNode.querySelector('.event__attendees');
+      const currentCount = parseInt(attendeeElement.textContent.split(' ')[0]);
+      attendeeElement.textContent = `${currentCount + 1} attending`;
+      button.textContent = 'Registered!';
+      button.style.backgroundColor = 'var(--secondary-color-dark)';
+      button.disabled = true;
+    }
+
+    // Leaderboard hover effects
+    document.querySelectorAll('.leaderboard__item').forEach(item => {
+      item.addEventListener('mouseenter', function () {
+        this.style.transform = 'translateX(10px)';
+      });
+
+      item.addEventListener('mouseleave', function () {
+        this.style.transform = 'translateX(0)';
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
