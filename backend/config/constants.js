@@ -1,1 +1,1 @@
-export const DB_Name = "Assignment_3_WDB_Nurzhan"
+export const DB_Name = "Assignment_4_WDB_Nurzhan"

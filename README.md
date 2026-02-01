@@ -1,104 +1,135 @@
-# FitClub - Integrated Fitness Management System
+# FitClub - Integrated Fitness Management System (Assignment 4)
 
-A full-stack fitness management application with MongoDB database, RESTful API, and interactive frontend interface.
+A full-stack fitness management application featuring MVC architecture, JWT authentication, Role-Based Access Control (RBAC), and full CRUD operations for two related objects.
+
+## Author
+
+Nurlybek Nurzhan | SE-2432
+
+---
 
 ## Project Overview
 
-FitClub is a comprehensive fitness management system that allows users to browse gym programs and log their workouts. The application features a modern dark-themed UI with full CRUD (Create, Read, Update, Delete) operations for both fitness programs and workout entries.
+FitClub is a comprehensive fitness management system that allows users to browse gym programs and log their workouts. Assignment 4 builds upon Assignment 3 by introducing:
 
-### Primary Object: Workout
-Tracks user workout sessions with details like exercise type, sets, reps, and weight.
+- **MVC Architecture** - Clean separation into Models, Routes, Controllers, and Middleware
+- **User Authentication** - Registration and Login with JWT tokens
+- **Password Hashing** - bcrypt for secure password storage
+- **Role-Based Access Control (RBAC)** - Admin vs User roles restricting POST/PUT/DELETE
 
-### Secondary Object: Program
-Manages gym fitness programs with information about duration, price, trainer, and intensity.
+### Two Related Objects
+
+**Primary Object: Workout** - Tracks user workout sessions with details like exercise type, sets, reps, weight, and category.
+
+**Secondary Object: Program** - Manages gym fitness programs with information about duration, price, trainer, intensity, and features.
+
+**Relationship:** Both objects exist within the FitClub fitness domain. Programs represent what the gym offers; Workouts represent what members actually do. Admins manage both through a protected admin panel.
+
+---
 
 ## Tech Stack
 
 | Layer | Technology |
-|-------|------------|
-| **Frontend** | HTML5, CSS3, JavaScript (Vanilla) |
+|-------|-----------|
+| **Frontend** | HTML5, CSS3, JavaScript (Vanilla + jQuery) |
 | **Backend** | Node.js, Express.js |
 | **Database** | MongoDB Atlas (Cloud) |
 | **ODM** | Mongoose |
+| **Auth** | bcryptjs (password hashing), jsonwebtoken (JWT) |
+| **DevTools** | Nodemon |
 
-## Project Structure
+---
+
+## Project Structure (MVC Pattern)
 
 ```
-├── backend/
-│   ├── config/
-│   │   └── db.js              # MongoDB connection configuration
-│   ├── models/
-│   │   ├── Workout.js         # Workout schema with validation
-│   │   └── Program.js         # Program schema with validation
-│   ├── routes/
-│   │   ├── workouts.js        # Workout CRUD endpoints
-│   │   └── programs.js        # Program CRUD endpoints
-│   ├── server.js              # Express server entry point
-│   ├── seed.js                # Database seeding script
-│   ├── package.json           # Backend dependencies
-│   └── .env                   # Environment variables (MongoDB URI)
-│
-├── frontend/
-│   ├── pages/
-│   │   ├── fitclub_program_page.html    # Dynamic program listing
-│   │   ├── fitclub_community_page.html  # Workout logger interface
-│   │   ├── fitclub_admin_page.html      # Admin CRUD panel
-│   │   └── ...                          # Other static pages
-│   ├── styles/
-│   │   ├── fitclub_admin_page.css       # Admin page styles
-│   │   └── ...                          # Other stylesheets
-│   └── index.html             # Landing page
-│
-└── README.md
+backend/
+├── config/
+│   ├── db.js                    # MongoDB connection configuration
+│   └── constants.js             # Database name constant
+├── models/
+│   ├── User.js                  # User schema (email, password, role)
+│   ├── Workout.js               # Workout schema with validation
+│   └── Program.js               # Program schema with validation
+├── controllers/
+│   ├── authController.js        # Auth logic (register, login, profile)
+│   ├── workoutController.js     # Workout CRUD logic
+│   └── programController.js     # Program CRUD logic
+├── middleware/
+│   ├── auth.js                  # JWT verification + Admin role check
+│   └── errorHandler.js          # Error logging middleware
+├── routes/
+│   ├── auth.js                  # Auth endpoints (register, login, profile)
+│   ├── workouts.js              # Workout endpoints with middleware
+│   └── programs.js              # Program endpoints with middleware
+├── server.js                    # Express server entry point
+├── seed.js                      # Database seeding (users + data)
+├── package.json                 # Dependencies
+└── .env                         # Environment variables
+
+frontend/
+├── pages/
+│   ├── fitclub_login_page.html      # Login/Register page
+│   ├── fitclub_admin_page.html      # Admin CRUD panel (protected)
+│   ├── fitclub_community_page.html  # Workout logger (admin-only form)
+│   ├── fitclub_program_page.html    # Programs listing (public)
+│   ├── fitclub_home_page.html       # Home page
+│   ├── fitclub_service_page.html    # Services page
+│   └── fitclub_about_page.html      # About page
+├── styles/
+│   ├── main.css                     # Global styles
+│   ├── fitclub_login_page.css       # Login page styles
+│   ├── fitclub_admin_page.css       # Admin page styles
+│   ├── fitclub_community_page.css   # Community page styles
+│   └── ...                          # Other page styles
+├── images/
+│   └── ...                          # Logo, headers, etc.
+├── index.html                       # Landing page
+├── index.js                         # Navigation & interaction
+└── index.css                        # Landing page styles
 ```
 
-## Schema Design Rationale
+---
 
-### Why These Objects?
+## Authentication & Role-Based Access Control
 
-**Workout (Primary Object)** - The core feature of any fitness application is tracking user workouts. This object captures everything a gym member needs to log their exercise sessions and monitor progress over time.
+### User Model
 
-**Program (Secondary Object)** - Gyms offer structured fitness programs. This object represents the services a gym provides, allowing members to browse and administrators to manage offerings.
+| Field | Type | Details |
+|-------|------|---------|
+| `email` | String | Required, unique, validated format |
+| `password` | String | Required, min 6 chars, bcrypt hashed |
+| `role` | String | "user" or "admin" (default: "user") |
 
-### Design Decisions
+### How Roles Work
 
-#### Workout Schema Design
-| Field | Why It's Needed |
-|-------|-----------------|
-| `name` | Identifies the workout session (e.g., "Morning Leg Day", "Back & Biceps") |
-| `exercise` | Specific exercise performed - essential for tracking what was done |
-| `sets` & `reps` | Standard fitness metrics - every strength workout is measured this way |
-| `weight` | Tracks progression - users want to see strength improvements over time |
-| `duration` | Important for cardio/HIIT workouts where time matters more than reps |
-| `category` | Enables filtering and organizing workouts by type |
-| `notes` | Personal observations help users remember how they felt, form tips, etc. |
-| `userName` | Identifies who logged the workout (future: user authentication) |
-| `timestamps` | Track when workouts were created/modified for history and analytics |
+| Action | Public (No Auth) | User Role | Admin Role |
+|--------|-----------------|-----------|------------|
+| **GET** Programs | Yes | Yes | Yes |
+| **GET** Workouts | Yes | Yes | Yes |
+| **POST** Programs/Workouts | No (401) | No (403) | Yes |
+| **PUT** Programs/Workouts | No (401) | No (403) | Yes |
+| **DELETE** Programs/Workouts | No (401) | No (403) | Yes |
+| Register/Login | Yes | Yes | Yes |
+| View Profile | No (401) | Yes | Yes |
 
-#### Program Schema Design
-| Field | Why It's Needed |
-|-------|-----------------|
-| `name` | Program title displayed to users |
-| `description` | Explains what the program offers - helps users decide |
-| `category` | Groups programs (strength, cardio, flexibility, group) for filtering |
-| `duration` | Session length - users need to plan their time |
-| `price` | Monthly cost - essential business information |
-| `intensity` | Helps users find programs matching their fitness level |
-| `maxParticipants` | Capacity planning - some classes have limits |
-| `trainer` | Shows who leads the program - builds trust |
-| `features` | Highlights key benefits (array allows multiple selling points) |
-| `icon` | Visual representation in the UI |
-| `timestamps` | Track when programs were added/updated |
+### Security Implementation
 
-### Validation Strategy
+1. **Password Hashing**: bcrypt with salt rounds (10) - passwords are never stored as plain text
+2. **JWT Tokens**: Generated on login/register, expire after 7 days, sent via `Authorization: Bearer <token>` header
+3. **Middleware Chain**: `protect` (verifies JWT) -> `admin` (checks role === "admin") -> Controller
+4. **Frontend Guards**: Admin page checks token + role before showing content; redirects to login if unauthorized
 
-- **Required fields**: Core data that must exist (name, exercise, category, etc.)
-- **Min/Max values**: Realistic boundaries (sets: 1-20, reps: 1-100, weight: 0-500kg)
-- **Enum constraints**: Predefined categories prevent invalid data
-- **String limits**: Prevent database bloat (100-500 character limits)
-- **Defaults**: Sensible fallbacks (userName: "Anonymous", weight: 0)
+### Demo Accounts (Seeded)
 
-## Database Schema
+| Role | Email | Password |
+|------|-------|----------|
+| **Admin** | admin@fitclub.com | admin123 |
+| **User** | user@fitclub.com | user123 |
+
+---
+
+## Database Schemas
 
 ### Workout Schema
 
@@ -113,8 +144,7 @@ Manages gym fitness programs with information about duration, price, trainer, an
 | `category` | String | Yes | Enum: Strength Training, Cardio, Flexibility, HIIT, Sports, Other |
 | `notes` | String | No | Max 500 characters |
 | `userName` | String | No | Default: "Anonymous" |
-| `createdAt` | Date | Auto | Mongoose timestamp |
-| `updatedAt` | Date | Auto | Mongoose timestamp |
+| `timestamps` | Date | Auto | createdAt, updatedAt |
 
 ### Program Schema
 
@@ -127,40 +157,51 @@ Manages gym fitness programs with information about duration, price, trainer, an
 | `price` | Number | Yes | Min: 0 |
 | `intensity` | String | Yes | Enum: Low, Moderate, High, Very High |
 | `maxParticipants` | Number | Yes | Min: 1, Max: 100 |
-| `trainer` | String | Yes | - |
+| `trainer` | String | Yes | Trainer name |
 | `features` | Array | No | Array of strings |
 | `icon` | String | No | Default: "ri-heart-pulse-fill" |
-| `createdAt` | Date | Auto | Mongoose timestamp |
-| `updatedAt` | Date | Auto | Mongoose timestamp |
+| `timestamps` | Date | Auto | createdAt, updatedAt |
+
+---
 
 ## API Endpoints
 
+### Auth API (`/api/auth`)
+
+| Method | Endpoint | Description | Access |
+|--------|----------|-------------|--------|
+| `POST` | `/api/auth/register` | Register new user | Public |
+| `POST` | `/api/auth/login` | Login & get JWT token | Public |
+| `GET` | `/api/auth/profile` | Get current user profile | Private |
+
 ### Workouts API (`/api/workouts`)
 
-| Method | Endpoint | Description | Status Codes |
-|--------|----------|-------------|--------------|
-| `GET` | `/api/workouts` | Retrieve all workouts | 200, 500 |
-| `GET` | `/api/workouts/:id` | Retrieve workout by ID | 200, 404, 500 |
-| `POST` | `/api/workouts` | Create new workout | 201, 400, 500 |
-| `PUT` | `/api/workouts/:id` | Update workout by ID | 200, 400, 404, 500 |
-| `DELETE` | `/api/workouts/:id` | Delete workout by ID | 200, 404, 500 |
+| Method | Endpoint | Description | Access |
+|--------|----------|-------------|--------|
+| `GET` | `/api/workouts` | Get all workouts | Public |
+| `GET` | `/api/workouts/:id` | Get workout by ID | Public |
+| `POST` | `/api/workouts` | Create new workout | Admin only |
+| `PUT` | `/api/workouts/:id` | Update workout | Admin only |
+| `DELETE` | `/api/workouts/:id` | Delete workout | Admin only |
 
 ### Programs API (`/api/programs`)
 
-| Method | Endpoint | Description | Status Codes |
-|--------|----------|-------------|--------------|
-| `GET` | `/api/programs` | Retrieve all programs | 200, 500 |
-| `GET` | `/api/programs/:id` | Retrieve program by ID | 200, 404, 500 |
-| `POST` | `/api/programs` | Create new program | 201, 400, 500 |
-| `PUT` | `/api/programs/:id` | Update program by ID | 200, 400, 404, 500 |
-| `DELETE` | `/api/programs/:id` | Delete program by ID | 200, 404, 500 |
+| Method | Endpoint | Description | Access |
+|--------|----------|-------------|--------|
+| `GET` | `/api/programs` | Get all programs | Public |
+| `GET` | `/api/programs/:id` | Get program by ID | Public |
+| `POST` | `/api/programs` | Create new program | Admin only |
+| `PUT` | `/api/programs/:id` | Update program | Admin only |
+| `DELETE` | `/api/programs/:id` | Delete program | Admin only |
+
+---
 
 ## Installation & Setup
 
 ### Prerequisites
 - Node.js (v14 or higher)
 - npm (Node Package Manager)
-- MongoDB Atlas account (or local MongoDB instance)
+- MongoDB Atlas account (or local MongoDB)
 
 ### 1. Clone the Repository
 ```bash
@@ -170,115 +211,94 @@ cd "WEB Technologies 2"
 
 ### 2. Backend Setup
 ```bash
-# Navigate to backend folder
 cd backend
-
-# Install dependencies
 npm install
-
-# Create .env file with your MongoDB connection string
-# Example .env content:
-# MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/fitclub
-# PORT=5000
 ```
 
-### 3. Seed the Database (Optional)
+### 3. Configure Environment Variables
+Create a `.env` file in the `backend/` folder:
+```env
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/?appName=YourApp
+PORT=5000
+JWT_SECRET=your_secret_key_here
+JWT_EXPIRE=7d
+```
+
+### 4. Seed the Database
 ```bash
 npm run seed
 ```
-This will populate the database with 8 sample programs and 5 sample workouts.
+This will create:
+- 2 users (admin + regular user)
+- 8 sample programs
+- 5 sample workouts
 
-### 4. Start the Server
+### 5. Start the Server
 ```bash
-# Production mode
-npm start
-
 # Development mode (with auto-reload)
 npm run dev
+
+# Production mode
+npm start
 ```
-Server will run on `http://localhost:5000`
+Server runs on `http://localhost:5000`
 
-### 5. Open Frontend
-Open `frontend/index.html` in your browser, or use a local server like Live Server extension in VS Code.
+### 6. Open Frontend
+Open `frontend/index.html` in your browser or use VS Code Live Server extension.
 
-## Frontend Pages
-
-| Page | Description | Database Interaction |
-|------|-------------|---------------------|
-| **Program Page** | Displays all fitness programs | GET (Read) |
-| **Community Page** | Workout logger with form and history | POST (Create), GET (Read) |
-| **Admin Page** | Full CRUD management panel | All CRUD operations |
-
-## API Usage Examples
-
-### Create a Workout (POST)
-```json
-POST /api/workouts
-Content-Type: application/json
-
-{
-  "name": "Morning Leg Day",
-  "exercise": "Squats",
-  "sets": 4,
-  "reps": 12,
-  "weight": 80,
-  "duration": 45,
-  "category": "Strength Training",
-  "notes": "Felt strong today",
-  "userName": "John Doe"
-}
-```
-
-### Response (201 Created)
-```json
-{
-  "_id": "6579abc123def456789",
-  "name": "Morning Leg Day",
-  "exercise": "Squats",
-  "sets": 4,
-  "reps": 12,
-  "weight": 80,
-  "duration": 45,
-  "category": "Strength Training",
-  "notes": "Felt strong today",
-  "userName": "John Doe",
-  "createdAt": "2024-01-15T10:30:00.000Z",
-  "updatedAt": "2024-01-15T10:30:00.000Z"
-}
-```
-
-### Validation Error Response (400 Bad Request)
-```json
-{
-  "message": "Validation error",
-  "errors": [
-    "Workout name is required",
-    "Number of sets is required"
-  ]
-}
-```
+---
 
 ## Error Handling
-
-The API implements comprehensive error handling:
 
 | Status Code | Description | When Used |
 |-------------|-------------|-----------|
 | `200` | OK | Successful GET, PUT, DELETE |
 | `201` | Created | Successful POST |
-| `400` | Bad Request | Validation errors, missing required fields |
-| `404` | Not Found | Invalid ID or resource doesn't exist |
+| `400` | Bad Request | Validation errors, missing fields |
+| `401` | Unauthorized | No token or invalid token |
+| `403` | Forbidden | User role lacks permission (RBAC) |
+| `404` | Not Found | Resource doesn't exist |
 | `500` | Server Error | Database or server issues |
 
-## Features
+---
 
-- **Responsive Design**: Mobile-friendly dark theme UI
-- **Real-time Updates**: Instant UI refresh after CRUD operations
-- **Form Validation**: Client-side and server-side validation
-- **Loading States**: Visual feedback during API calls
-- **Error Notifications**: Toast notifications for success/error messages
-- **Confirmation Dialogs**: Delete confirmation modal to prevent accidents
+## Architectural Decisions
 
-## Author
+### Why MVC?
+- **Separation of Concerns**: Models handle data, Controllers handle logic, Routes handle endpoint definitions
+- **Testability**: Each layer can be tested independently
+- **Scalability**: New features can be added without modifying existing code
+- **Industry Standard**: Follows Express.js best practices
 
-Nurlybek Nurzhan | SE-2432
+### Why JWT over Sessions?
+- **Stateless**: No server-side session storage needed
+- **Scalable**: Works across multiple servers
+- **Frontend-friendly**: Easy to store in localStorage and send with fetch headers
+
+### Why bcrypt for Password Hashing?
+- **Industry standard** for password security
+- **Salt rounds** prevent rainbow table attacks
+- **Timing-safe comparison** prevents timing attacks
+
+### Why Separate Middleware?
+- `protect` middleware verifies the JWT token and attaches `req.user`
+- `admin` middleware checks if `req.user.role === 'admin'`
+- This chain allows flexible route protection (some routes need auth only, some need admin)
+
+---
+
+## Features Summary
+
+- MVC Architecture (Models, Views, Controllers)
+- JWT Authentication (Register, Login, Token verification)
+- bcrypt Password Hashing (salt rounds: 10)
+- Role-Based Access Control (admin vs user)
+- Full CRUD for Programs and Workouts
+- Protected POST/PUT/DELETE routes (admin only)
+- Public GET routes (open to everyone)
+- Admin panel with access control
+- Login/Register page with demo accounts
+- Error handling middleware with logging
+- Responsive dark-themed UI
+- Toast notifications for feedback
+- Database seeding with sample data + users

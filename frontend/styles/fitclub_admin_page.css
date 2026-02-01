@@ -27,6 +27,13 @@
   margin: 0 auto;
 }
 
+.admin__user__info {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+
 /* Tab Navigation */
 .admin__tabs {
   display: flex;

@@ -1,9 +1,25 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import bcrypt from 'bcryptjs';
 import Program from './models/Program.js';
 import Workout from './models/Workout.js';
+import User from './models/User.js';
 
 dotenv.config();
+
+// Sample Users Data
+const usersData = [
+  {
+    email: 'admin@fitclub.com',
+    password: 'admin123',
+    role: 'admin'
+  },
+  {
+    email: 'user@fitclub.com',
+    password: 'user123',
+    role: 'user'
+  }
+];
 
 // Sample Programs Data
 const programsData = [
@@ -173,7 +189,20 @@ const seedDatabase = async () => {
     // Clear existing data
     await Program.deleteMany({});
     await Workout.deleteMany({});
+    await User.deleteMany({});
     console.log('Cleared existing data');
+
+    // Insert users (password hashing handled by User model pre-save hook)
+    for (const userData of usersData) {
+      await User.create({
+        email: userData.email,
+        password: userData.password,
+        role: userData.role
+      });
+    }
+    console.log(`Inserted ${usersData.length} users`);
+    console.log('  Admin: admin@fitclub.com / admin123');
+    console.log('  User:  user@fitclub.com / user123');
 
     // Insert programs
     const programs = await Program.insertMany(programsData);

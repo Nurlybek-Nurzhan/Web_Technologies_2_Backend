@@ -1,6 +1,30 @@
 /* styles/fitclub_community_page.css - COMMUNITY PAGE ONLY */
 /* ===================================================== */
 
+/* Auth Notice */
+.auth__notice {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background-color: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  color: var(--text-light);
+}
+
+.auth__notice i {
+  font-size: 1.5rem;
+  color: #3b82f6;
+  flex-shrink: 0;
+}
+
+.auth__notice a {
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+
 /* Community Hero */
 .community__hero {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
