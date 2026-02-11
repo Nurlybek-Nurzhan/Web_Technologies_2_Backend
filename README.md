@@ -1,44 +1,12 @@
-<<<<<<< Updated upstream
-# Web Technologies 2 — Backend
-
-Backend project for the **Web Technologies 2** course.
-
-This repository is structured to keep assignments isolated, clean, and easy to review.
-
-## Repository Structure
-
-- **main**
-  - Contains only this `README.md`
-  - Used as a stable reference branch
-
-- **assignments branches contains assignment solutions**
-
-## Technologies
-The backend may include (depending on assignment requirements):
-- Node.js
-- Express.js
-- REST API architecture
-- Environment-based configuration
-
-## Workflow
-Each assignment is developed in its own branch to:
-- Avoid mixing code between assignments
-- Keep grading and reviews simple
-- Maintain a clean project history
-=======
 # FitClub - Full-Stack Fitness Management System (Final Project)
 
 A production-ready full-stack fitness management application featuring MVC architecture, JWT authentication, Role-Based Access Control (RBAC), full CRUD operations for three related MongoDB collections, and a responsive frontend with integrated comments/reviews.
->>>>>>> Stashed changes
 
 ## Author
 **Nurzhan Nurlybek**
 
 ---
 
-<<<<<<< Updated upstream
-Built for learning. Structured for scale.
-=======
 ## Live Demo
 
 - **Live URL:** *(Add your Render deployment URL here)*
@@ -399,4 +367,3 @@ The collection includes:
 - Database seeding with relational sample data
 - Error handling middleware
 - Toast notification system
->>>>>>> Stashed changes
