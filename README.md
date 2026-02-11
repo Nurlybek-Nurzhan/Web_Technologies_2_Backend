@@ -9,8 +9,7 @@ A production-ready full-stack fitness management application featuring MVC archi
 
 ## Live Demo
 
-- **Live URL:** *(Add your Render deployment URL here)*
-- **GitHub Repository:** *(Add your GitHub repo URL here)*
+- **Live URL:** *https://web-technologies-2-backend.onrender.com/*
 
 ### Demo Accounts
 
@@ -49,12 +48,11 @@ User ──┬── createdBy ──> Program
 
 | Layer | Technology |
 |-------|-----------|
-| **Frontend** | HTML5, CSS3, JavaScript (Vanilla + jQuery), Bootstrap 5 |
+| **Frontend** | HTML5, CSS3, JavaScript (Vanilla) |
 | **Backend** | Node.js, Express.js |
 | **Database** | MongoDB Atlas (Cloud) |
 | **ODM** | Mongoose |
 | **Auth** | bcryptjs (password hashing), jsonwebtoken (JWT) |
-| **Icons** | Remix Icon |
 | **DevTools** | Nodemon |
 | **Deployment** | Render (Backend + Frontend served together) |
 
@@ -141,7 +139,7 @@ WEB Technologies 2/
 ### Base URL
 
 - **Local:** `http://localhost:5000/api`
-- **Production:** `<your-render-url>/api`
+- **Production:** `<my-render-url>/api`
 
 ### Auth Endpoints (`/api/auth`)
 
