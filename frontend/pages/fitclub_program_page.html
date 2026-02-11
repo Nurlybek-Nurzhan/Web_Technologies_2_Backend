@@ -1,0 +1,494 @@
+<!-- fitclub_program_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/fitclub_program_page.css" />
+  <title>Fitclub - Programs</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../index.js" defer></script>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav__logo">
+      <a href="../index.html"><img src="../images/logo.png" alt="logo" /></a>
+    </div>
+
+    <ul class="nav__links" id="navLinks">
+      <li class="link"><a href="./fitclub_home_page.html">Home</a></li>
+      <li class="link"><a href="./fitclub_program_page.html">Program</a></li>
+      <li class="link"><a href="./fitclub_service_page.html">Service</a></li>
+      <li class="link"><a href="./fitclub_about_page.html">About</a></li>
+      <li class="link"><a href="./fitclub_community_page.html">Community</a></li>
+      <li class="link"><a href="./fitclub_login_page.html">Login</a></li>
+    </ul>
+
+    <button class="btn" id="joinBtn">
+      <span>Join Now</span>
+    </button>
+
+    <!-- Burger Menu Button -->
+    <div class="nav__burger" id="navBurger">
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="nav__overlay" id="navOverlay"></div>
+  </nav>
+
+  <!-- Program Hero -->
+  <section class="program__hero">
+    <span class="bg__blur"></span>
+    <h1>Our <span>Fitness</span> Programs</h1>
+    <p>Discover the perfect program tailored to your fitness goals. From beginner-friendly routines to advanced
+      training, we have something for everyone.</p>
+  </section>
+
+  <!-- Program Categories -->
+  <section class="section__container">
+    <div class="program__categories">
+      <button class="category__btn active" onclick="filterPrograms('all')">All Programs</button>
+      <button class="category__btn" onclick="filterPrograms('strength')">Strength Training</button>
+      <button class="category__btn" onclick="filterPrograms('cardio')">Cardio & HIIT</button>
+      <button class="category__btn" onclick="filterPrograms('flexibility')">Flexibility & Yoga</button>
+      <button class="category__btn" onclick="filterPrograms('group')">Group Classes</button>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="loading__state">
+      <i class="ri-loader-4-line"></i>
+      <p>Loading programs...</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="errorState" class="error__state" style="display: none;">
+      <i class="ri-error-warning-line"></i>
+      <p id="errorMessage">Failed to load programs</p>
+      <button class="btn" onclick="loadPrograms()">Try Again</button>
+    </div>
+
+    <!-- Program Grid -->
+    <div class="program__grid" id="programGrid">
+      <!-- Programs will be loaded dynamically from API -->
+    </div>
+  </section>
+
+  <!-- Weekly Schedule -->
+  <section class="schedule">
+    <div class="section__container">
+      <h2 class="section__header">Weekly Schedule</h2>
+      <p class="section__subheader">Check out our weekly class schedule and find the perfect time for your workout</p>
+
+      <div class="schedule__grid">
+        <div class="schedule__day">
+          <h4>Monday</h4>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">HIIT Blast</div>
+              <div class="schedule__trainer">with Sarah M.</div>
+            </div>
+            <div class="schedule__time">7:00 AM</div>
+          </div>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">PowerLift Pro</div>
+              <div class="schedule__trainer">with Mike R.</div>
+            </div>
+            <div class="schedule__time">6:00 PM</div>
+          </div>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">Yoga Flow</div>
+              <div class="schedule__trainer">with Emma L.</div>
+            </div>
+            <div class="schedule__time">7:30 PM</div>
+          </div>
+        </div>
+
+        <div class="schedule__day">
+          <h4>Tuesday</h4>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">Muscle Builder</div>
+              <div class="schedule__trainer">with Tom K.</div>
+            </div>
+            <div class="schedule__time">6:30 AM</div>
+          </div>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">Dance Fitness</div>
+              <div class="schedule__trainer">with Lisa P.</div>
+            </div>
+            <div class="schedule__time">5:30 PM</div>
+          </div>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">Mobility Masters</div>
+              <div class="schedule__trainer">with Alex D.</div>
+            </div>
+            <div class="schedule__time">8:00 PM</div>
+          </div>
+        </div>
+
+        <div class="schedule__day">
+          <h4>Wednesday</h4>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">HIIT Blast</div>
+              <div class="schedule__trainer">with Sarah M.</div>
+            </div>
+            <div class="schedule__time">7:00 AM</div>
+          </div>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">Bootcamp Challenge</div>
+              <div class="schedule__trainer">with Jake W.</div>
+            </div>
+            <div class="schedule__time">6:00 PM</div>
+          </div>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">Yoga Flow</div>
+              <div class="schedule__trainer">with Emma L.</div>
+            </div>
+            <div class="schedule__time">7:30 PM</div>
+          </div>
+        </div>
+
+        <div class="schedule__day">
+          <h4>Thursday</h4>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">PowerLift Pro</div>
+              <div class="schedule__trainer">with Mike R.</div>
+            </div>
+            <div class="schedule__time">6:30 AM</div>
+          </div>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">Cardio Endurance</div>
+              <div class="schedule__trainer">with Amy S.</div>
+            </div>
+            <div class="schedule__time">5:30 PM</div>
+          </div>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">Dance Fitness</div>
+              <div class="schedule__trainer">with Lisa P.</div>
+            </div>
+            <div class="schedule__time">7:00 PM</div>
+          </div>
+        </div>
+
+        <div class="schedule__day">
+          <h4>Friday</h4>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">HIIT Blast</div>
+              <div class="schedule__trainer">with Sarah M.</div>
+            </div>
+            <div class="schedule__time">7:00 AM</div>
+          </div>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">Muscle Builder</div>
+              <div class="schedule__trainer">with Tom K.</div>
+            </div>
+            <div class="schedule__time">6:00 PM</div>
+          </div>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">Mobility Masters</div>
+              <div class="schedule__trainer">with Alex D.</div>
+            </div>
+            <div class="schedule__time">7:30 PM</div>
+          </div>
+        </div>
+
+        <div class="schedule__day">
+          <h4>Weekend</h4>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">Yoga Flow</div>
+              <div class="schedule__trainer">with Emma L.</div>
+            </div>
+            <div class="schedule__time">9:00 AM</div>
+          </div>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">Bootcamp Challenge</div>
+              <div class="schedule__trainer">with Jake W.</div>
+            </div>
+            <div class="schedule__time">10:30 AM</div>
+          </div>
+          <div class="schedule__class">
+            <div>
+              <div class="schedule__name">Open Gym</div>
+              <div class="schedule__trainer">Self-guided</div>
+            </div>
+            <div class="schedule__time">All Day</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="programModal" class="modal">
+    <div class="modal__content">
+      <span class="modal__close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle">Program Details</h2>
+      <div id="modalContent">
+        <!-- Content will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = '/api';
+    let allPrograms = [];
+
+    function getToken() { return localStorage.getItem('token'); }
+    function getUser() { return JSON.parse(localStorage.getItem('user') || 'null'); }
+    function getAuthHeaders() {
+      return { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + getToken() };
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadPrograms();
+    });
+
+    async function loadPrograms() {
+      const loadingState = document.getElementById('loadingState');
+      const errorState = document.getElementById('errorState');
+      const programGrid = document.getElementById('programGrid');
+
+      loadingState.style.display = 'flex';
+      errorState.style.display = 'none';
+      programGrid.innerHTML = '';
+
+      try {
+        const response = await fetch(`${API_URL}/programs`);
+        if (!response.ok) throw new Error('Failed to fetch programs');
+
+        allPrograms = await response.json();
+        loadingState.style.display = 'none';
+
+        if (allPrograms.length === 0) {
+          programGrid.innerHTML = '<div class="empty__state"><i class="ri-calendar-line"></i><p>No programs available yet. Check back soon!</p></div>';
+          return;
+        }
+        renderPrograms(allPrograms);
+      } catch (error) {
+        console.error('Error loading programs:', error);
+        loadingState.style.display = 'none';
+        errorState.style.display = 'flex';
+        document.getElementById('errorMessage').textContent = 'Failed to load programs. Make sure the server is running.';
+      }
+    }
+
+    function renderPrograms(programs) {
+      const programGrid = document.getElementById('programGrid');
+      programGrid.innerHTML = '';
+      programs.forEach(program => programGrid.appendChild(createProgramCard(program)));
+    }
+
+    function createProgramCard(program) {
+      const card = document.createElement('div');
+      card.className = 'program__card';
+      card.dataset.category = program.category;
+      card.dataset.id = program._id;
+
+      const featuresHTML = program.features && program.features.length > 0
+        ? program.features.map(f => `<li><i class="ri-checkbox-circle-fill"></i> ${f}</li>`).join('')
+        : '<li><i class="ri-checkbox-circle-fill"></i> Professional guidance</li>';
+
+      card.innerHTML = `
+        <div class="program__card__image">
+          <i class="${program.icon || 'ri-heart-pulse-fill'}"></i>
+        </div>
+        <div class="program__card__content">
+          <h3>${program.name}</h3>
+          <div class="program__card__details">
+            <span><i class="ri-time-line"></i> ${program.duration} min</span>
+            <span><i class="ri-group-line"></i> Max ${program.maxParticipants}</span>
+            <span><i class="ri-fire-line"></i> ${program.intensity}</span>
+          </div>
+          <p>${program.description}</p>
+          <ul class="program__card__features">${featuresHTML}</ul>
+          <div class="program__card__price">
+            <div class="price">$${program.price}<span>/month</span></div>
+            <button class="btn" onclick="openModal('${program._id}')">Learn More</button>
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    function filterPrograms(category) {
+      document.querySelectorAll('.category__btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      if (category === 'all') {
+        renderPrograms(allPrograms);
+      } else {
+        renderPrograms(allPrograms.filter(p => p.category === category));
+      }
+    }
+
+    // Modal with comments
+    async function openModal(programId) {
+      const program = allPrograms.find(p => p._id === programId);
+      if (!program) return;
+
+      const modal = document.getElementById('programModal');
+      document.getElementById('modalTitle').textContent = program.name + ' - Full Details';
+
+      const featuresHTML = program.features && program.features.length > 0
+        ? program.features.map(f => `<li>${f}</li>`).join('')
+        : '<li>Professional guidance</li><li>Progress tracking</li>';
+
+      const user = getUser();
+      const token = getToken();
+      const commentFormHTML = token && user ? `
+        <div class="comment__form">
+          <h4>Leave a Review</h4>
+          <div class="comment__rating">
+            <label>Rating:</label>
+            <select id="commentRating">
+              <option value="5">5 Stars</option>
+              <option value="4">4 Stars</option>
+              <option value="3">3 Stars</option>
+              <option value="2">2 Stars</option>
+              <option value="1">1 Star</option>
+            </select>
+          </div>
+          <textarea id="commentText" placeholder="Share your experience..." rows="3" maxlength="500"></textarea>
+          <button class="btn" onclick="submitComment('${programId}')"><i class="ri-send-plane-line"></i> Post Review</button>
+        </div>
+      ` : '<div class="comment__login__notice"><p><a href="./fitclub_login_page.html">Login</a> to leave a review.</p></div>';
+
+      document.getElementById('modalContent').innerHTML = `
+        <div class="modal__info">
+          <p><strong>Trainer:</strong> ${program.trainer}</p>
+          <p><strong>Duration:</strong> ${program.duration} minutes</p>
+          <p><strong>Intensity:</strong> ${program.intensity}</p>
+          <p><strong>Max Participants:</strong> ${program.maxParticipants}</p>
+          <p><strong>Category:</strong> ${program.category.charAt(0).toUpperCase() + program.category.slice(1)}</p>
+        </div>
+        <h3>Program Overview</h3>
+        <p>${program.description}</p>
+        <h3>What's Included</h3>
+        <ul style="color: var(--text-light); margin: 1rem 0; padding-left: 1rem;">${featuresHTML}</ul>
+        <div class="modal__price">
+          <span class="price__tag">$${program.price}<small>/month</small></span>
+        </div>
+        <div class="comments__section">
+          <h3><i class="ri-chat-3-line"></i> Reviews</h3>
+          ${commentFormHTML}
+          <div id="commentsList" class="comments__list">
+            <p style="color: var(--text-light);">Loading reviews...</p>
+          </div>
+        </div>
+        <div style="margin-top: 2rem;">
+          <button class="btn">Enroll Now</button>
+          <button class="btn btn--outline" style="margin-left: 1rem;" onclick="closeModal()">Close</button>
+        </div>
+      `;
+
+      modal.style.display = 'block';
+      loadComments(programId);
+    }
+
+    async function loadComments(programId) {
+      const commentsList = document.getElementById('commentsList');
+      try {
+        const response = await fetch(`${API_URL}/comments/program/${programId}`);
+        const comments = await response.json();
+
+        if (comments.length === 0) {
+          commentsList.innerHTML = '<p style="color: var(--text-light); text-align: center;">No reviews yet. Be the first!</p>';
+          return;
+        }
+
+        const user = getUser();
+        commentsList.innerHTML = comments.map(c => {
+          const stars = '&#9733;'.repeat(c.rating) + '&#9734;'.repeat(5 - c.rating);
+          const date = new Date(c.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          const canDelete = user && (user.id === (c.user._id || c.user) || user.role === 'admin');
+          const deleteBtn = canDelete ? `<button class="comment__delete" onclick="deleteComment('${c._id}', '${programId}')" title="Delete"><i class="ri-delete-bin-line"></i></button>` : '';
+          return `
+            <div class="comment__card">
+              <div class="comment__header">
+                <div class="comment__user">
+                  <span class="comment__avatar">${(c.user.email || 'U')[0].toUpperCase()}</span>
+                  <div>
+                    <strong>${c.user.email || 'User'}</strong>
+                    <span class="comment__date">${date}</span>
+                  </div>
+                </div>
+                ${deleteBtn}
+              </div>
+              <div class="comment__stars">${stars}</div>
+              <p class="comment__text">${c.text}</p>
+            </div>
+          `;
+        }).join('');
+      } catch (error) {
+        commentsList.innerHTML = '<p style="color: var(--text-light);">Could not load reviews.</p>';
+      }
+    }
+
+    async function submitComment(programId) {
+      const text = document.getElementById('commentText').value.trim();
+      const rating = parseInt(document.getElementById('commentRating').value);
+      if (!text) { showNotification('Please write a review.', 'error'); return; }
+
+      try {
+        const response = await fetch(`${API_URL}/comments`, {
+          method: 'POST', headers: getAuthHeaders(),
+          body: JSON.stringify({ text, rating, programId })
+        });
+        if (!response.ok) { const err = await response.json(); throw new Error(err.message || 'Failed'); }
+        document.getElementById('commentText').value = '';
+        loadComments(programId);
+        showNotification('Review posted!', 'success');
+      } catch (error) { showNotification(error.message, 'error'); }
+    }
+
+    async function deleteComment(commentId, programId) {
+      try {
+        const response = await fetch(`${API_URL}/comments/${commentId}`, { method: 'DELETE', headers: getAuthHeaders() });
+        if (!response.ok) throw new Error('Failed');
+        loadComments(programId);
+        showNotification('Review deleted.', 'success');
+      } catch (error) { showNotification('Failed to delete review.', 'error'); }
+    }
+
+    function showNotification(message, type) {
+      const n = document.createElement('div');
+      n.className = `notification notification--${type}`;
+      n.innerHTML = `<i class="ri-${type === 'success' ? 'checkbox-circle' : 'error-warning'}-line"></i><span>${message}</span>`;
+      document.body.appendChild(n);
+      setTimeout(() => n.classList.add('notification--show'), 100);
+      setTimeout(() => { n.classList.remove('notification--show'); setTimeout(() => n.remove(), 300); }, 3000);
+    }
+
+    function closeModal() { document.getElementById('programModal').style.display = 'none'; }
+
+    window.onclick = function (event) {
+      const modal = document.getElementById('programModal');
+      if (event.target === modal) modal.style.display = 'none';
+    }
+  </script>
+</body>
+
+</html>
