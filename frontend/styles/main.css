@@ -1,0 +1,482 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* ===================================
+   DESIGN TOKENS (Shared Variables)
+   =================================== */
+:root {
+  --primary-color: #111317;
+  --primary-color-light: #1f2125;
+  --primary-color-extra-light: #35373b;
+  --secondary-color: #8b1538;
+  --secondary-color-dark: #6b0f2b;
+  --secondary-color-light: #a61e47;
+  --text-light: #d1d5db;
+  --white: #ffffff;
+  --max-width: 1200px;
+}
+
+/* ===================================
+   GLOBAL RESET & TYPOGRAPHY
+   =================================== */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--primary-color);
+  color: var(--white);
+  line-height: 1.6;
+  cursor: default;
+}
+
+/* ===================================
+   UTILITY CLASSES
+   =================================== */
+img {
+  width: 100%;
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+}
+
+.bg__blur {
+  position: absolute;
+  box-shadow: 0 0 1000px 50px var(--secondary-color);
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* ===================================
+   LAYOUT & TYPOGRAPHY
+   =================================== */
+.section__container {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 5rem 1rem;
+}
+
+.section__header {
+  margin-bottom: 1rem;
+  font-size: 2.25rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--white);
+}
+
+.section__subheader {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+  color: var(--text-light);
+  margin-bottom: 3rem;
+}
+
+/* ===================================
+   BUTTONS
+   =================================== */
+.btn {
+  padding: 1rem 2rem;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  color: var(--white);
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover {
+  background-color: var(--secondary-color-dark);
+}
+
+/* ===================================
+   ENHANCED NAVIGATION (Global)
+   =================================== */
+nav {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 1.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  position: relative;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+nav.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(17, 19, 23, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(139, 21, 56, 0.3);
+  padding: 1rem;
+  animation: slideDown 0.3s ease;
+  z-index: 1000;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Logo */
+.nav__logo {
+  max-width: 150px;
+  transition: transform 0.3s ease;
+  z-index: 1001;
+}
+
+.nav__logo:hover {
+  transform: scale(1.05);
+}
+
+.nav__logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Links */
+.nav__links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.link a {
+  position: relative;
+  padding: 0.5rem 0;
+  color: var(--white);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.link a::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 0;
+  left: 50%;
+  bottom: 0;
+  background-color: var(--secondary-color);
+  transition: width 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.link a:hover,
+.link a.active {
+  color: var(--secondary-color);
+}
+
+.link a:hover::after,
+.link a.active::after {
+  width: 100%;
+}
+
+/* Join Button */
+#joinBtn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+#joinBtn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: var(--secondary-color-dark);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+  z-index: -1;
+}
+
+#joinBtn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+#joinBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(139, 21, 56, 0.4);
+}
+
+#joinBtn span {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+#joinBtn.pulse,
+#mobileJoinBtn.pulse {
+  animation: pulse 0.6s ease;
+}
+
+/* Burger Menu */
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  transition: transform 0.3s ease;
+}
+
+.nav__burger:hover {
+  transform: scale(1.1);
+}
+
+.burger__line {
+  width: 28px;
+  height: 3px;
+  background-color: var(--white);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.nav__burger.active .burger__line:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+  background-color: var(--secondary-color);
+}
+
+.nav__burger.active .burger__line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.nav__burger.active .burger__line:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
+  background-color: var(--secondary-color);
+}
+
+/* Mobile Overlay */
+.nav__overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 998;
+}
+
+/* ===================================
+   RESPONSIVE NAVIGATION - FIXED
+   =================================== */
+@media (max-width: 1024px) {
+  .nav__links {
+    gap: 1.5rem;
+  }
+  .link a {
+    font-size: 0.95rem;
+  }
+}
+
+/* По умолчанию мобильная кнопка скрыта */
+.mobile-join-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav__burger {
+    display: flex;
+  }
+
+  /* Скрываем десктопную кнопку Join */
+  nav > .btn {
+    display: none;
+  }
+
+  nav {
+    padding: 1rem;
+  }
+
+  .nav__links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(
+      135deg,
+      var(--primary-color-light),
+      var(--primary-color-extra-light)
+    );
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    z-index: 999;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+    transition: right 0.4s ease;
+  }
+
+  .nav__links.active {
+    right: 0;
+  }
+
+  .nav__links li {
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  .nav__links.active li {
+    animation: slideInMenu 0.4s ease forwards;
+  }
+
+  /* Анимация появления элементов меню */
+  .nav__links.active li:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .nav__links.active li:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .nav__links.active li:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .nav__links.active li:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .nav__links.active li:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .nav__links.active li:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+
+  @keyframes slideInMenu {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .link a {
+    display: block;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border-radius: 10px;
+  }
+
+  /* ✅ Показываем мобильную кнопку Join в меню */
+  .nav__links .mobile-join-btn {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    margin-top: 1rem;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border-radius: 25px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  /* Анимация появления для мобильной кнопки */
+  .nav__links .mobile-join-btn {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  .nav__links.active .mobile-join-btn {
+    animation: slideInMenu 0.4s ease forwards;
+    animation-delay: 0.6s;
+  }
+
+  /* Эффект при наведении на мобильную кнопку */
+  .nav__links .mobile-join-btn::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: var(--secondary-color-dark);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+    z-index: -1;
+  }
+
+  .nav__links .mobile-join-btn:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .nav__links .mobile-join-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 21, 56, 0.4);
+  }
+
+  .nav__links .mobile-join-btn span {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav__logo {
+    max-width: 120px;
+  }
+  .nav__links {
+    width: 100%;
+  }
+  .nav__burger {
+    padding: 0.25rem;
+  }
+  .burger__line {
+    width: 24px;
+  }
+}

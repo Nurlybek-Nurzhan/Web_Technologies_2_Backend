@@ -66,8 +66,7 @@ User ──┬── createdBy ──> Program
 WEB Technologies 2/
 ├── backend/
 │   ├── config/
-│   │   ├── db.js                    # MongoDB connection
-│   │   └── constants.js             # Database constants
+│   │   └── db.js                    # MongoDB connection
 │   ├── models/
 │   │   ├── User.js                  # User schema (email, password, role)
 │   │   ├── Workout.js               # Workout schema (+ createdBy ref)
@@ -89,7 +88,7 @@ WEB Technologies 2/
 │   ├── server.js                    # Express entry point + static files
 │   ├── seed.js                      # Database seeding (relational data)
 │   ├── package.json                 # Dependencies & scripts
-│   └── .env                         # Environment variables
+│   └── .env.example                 # Environment variables template
 │
 ├── frontend/
 │   ├── pages/
@@ -106,6 +105,7 @@ WEB Technologies 2/
 │   ├── index.js                         # Navigation & interactions
 │   └── index.css                        # Landing page styles
 │
+├── .gitignore                           # Git ignore rules
 ├── postman_collection.json              # Postman API test collection
 └── README.md                            # This file
 ```
