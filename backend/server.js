@@ -1,8 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import client from 'prom-client';
 import connectDB from './config/db.js';
 import programRoutes from './routes/programs.js';
 import workoutRoutes from './routes/workouts.js';
@@ -18,32 +17,44 @@ connectDB();
 
 const app = express();
 
-// ES module __dirname equivalent
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Prometheus metrics
+const collectDefaultMetrics = client.collectDefaultMetrics;
+collectDefaultMetrics();
+
+// Custom HTTP metrics counters
+const httpRequestsTotal = new client.Counter({
+  name: 'http_requests_total',
+  help: 'Total number of HTTP requests',
+  labelNames: ['method', 'route', 'status'],
+});
+
+const httpRequestDurationSeconds = new client.Histogram({
+  name: 'http_request_duration_seconds',
+  help: 'HTTP request duration in seconds',
+  labelNames: ['method', 'route', 'status'],
+  buckets: [0.05, 0.1, 0.2, 0.3, 0.5, 1, 2, 5],
+});
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-// Serve frontend static files
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
+// HTTP metrics middleware — must be before routes
+app.use((req, res, next) => {
+  const end = httpRequestDurationSeconds.startTimer();
+  res.on('finish', () => {
+    const route = req.route?.path ?? req.path;
+    httpRequestsTotal.inc({ method: req.method, route, status: res.statusCode });
+    end({ method: req.method, route, status: res.statusCode });
+  });
+  next();
+});
 
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/programs', programRoutes);
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/comments', commentRoutes);
-
-// Root route - serve frontend index.html
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
-});
-
-// Catch-all for frontend page routes
-app.get('/pages/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'frontend', req.path));
-});
 
 // API info endpoint
 app.get('/api', (req, res) => {
@@ -56,6 +67,12 @@ app.get('/api', (req, res) => {
       comments: '/api/comments'
     }
   });
+});
+
+// Prometheus metrics endpoint
+app.get('/metrics', async (req, res) => {
+  res.set('Content-Type', client.register.contentType);
+  res.end(await client.register.metrics());
 });
 
 // Error handling middleware
